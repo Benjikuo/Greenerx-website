@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" translate="no">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenerX - Mini Game</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body>
+
+<header class="navbar">
+    <a href="../index.html" class="logo-link gradient-logo">Greener X</a>
+
+    <nav class="menu">
+        <a href="../index.html">Home</a>
+        <a href="../pages/case.html">Case</a>
+        <a href="../pages/calculator.html">Calculator</a>
+        <a href="../pages/about.html">About</a>
+        <a href="../pages/contact.html">Contact</a>
+        <a href="../pages/game.html">Game</a>
+    </nav>
+
+    <div class="actions">
+        <div id="lang-switch">🌐</div>
+        <div id="theme-toggle">🌙</div>
+    </div>
+</header>
+
+
+<section class="game-hero">
+    <h1>🌿 Click the Leaf!</h1>
+    <p>在 30 秒內盡可能多地點擊綠葉。</p>
+</section>
+
+<section class="game-container">
+    <div class="scoreboard">
+        <p>分數：<span id="score">0</span></p>
+        <p>時間：<span id="time">30</span>s</p>
+    </div>
+
+    <div id="leaf">🍃</div>
+</section>
+
+
+
+<footer class="deep-footer">
+
+    <div class="footer-grid">
+
+        <a href="../index.html" class="footer-logo-link">Greener X</a>
+
+        <div class="footer-text">
+            <p>GreenerX 致力於提供永續發展、碳管理與綠建築解決方案。</p>
+            <p>我們協助企業邁向低碳、創新、永續的未來。</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="../index.html">Home</a>
+            <a href="../pages/case.html">Case</a>
+            <a href="../pages/calculator.html">Calculator</a>
+            <a href="../pages/about.html">About</a>
+            <a href="../pages/contact.html">Contact</a>
+            <a href="../pages/game.html">Game</a>
+        </div>
+
+    </div>
+    <div class="footer-copy-bottom">
+        © 2025 GreenerX — Building a Sustainable Future.
+    </div>
+
+</footer>
+
+
+
+
+<script>
+    const leaf = document.getElementById("leaf");
+    const scoreText = document.getElementById("score");
+    const timeText = document.getElementById("time");
+
+    let score = 0;
+    let timeLeft = 30;
+    let gameStarted = false;
+
+    function moveLeaf() {
+        const container = document.querySelector(".game-container");
+        const maxX = container.clientWidth - 60;
+        const maxY = container.clientHeight - 60;
+
+        const x = Math.random() * maxX;
+        const y = Math.random() * maxY;
+
+        leaf.style.left = x + "px";
+        leaf.style.top = y + "px";
+    }
+
+    leaf.addEventListener("click", () => {
+        if (!gameStarted) return;
+        score++;
+        scoreText.textContent = score;
+        moveLeaf();
+    });
+
+    function startGame() {
+        gameStarted = true;
+
+        const timer = setInterval(() => {
+            timeLeft--;
+            timeText.textContent = timeLeft;
+
+            if (timeLeft <= 0) {
+                clearInterval(timer);
+                gameStarted = false;
+                alert("時間到！你的得分是：" + score + " 🌿");
+            }
+        }, 1000);
+    }
+
+    moveLeaf();
+    startGame();
+</script>
+
+</body>
+</html>

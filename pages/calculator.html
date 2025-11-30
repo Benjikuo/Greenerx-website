@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" translate="no">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GreenerX - Carbon Calculator</title>
+    <link rel="stylesheet" href="../assets/css/style.css" />
+</head>
+
+<body>
+
+<header class="navbar">
+    <a href="../index.html" class="logo-link gradient-logo">Greener X</a>
+
+    <nav class="menu">
+        <a href="../index.html">Home</a>
+        <a href="../pages/case.html">Case</a>
+        <a href="../pages/calculator.html">Calculator</a>
+        <a href="../pages/about.html">About</a>
+        <a href="../pages/contact.html">Contact</a>
+        <a href="../pages/game.html">Game</a>
+    </nav>
+
+    <div class="actions">
+        <div id="lang-switch">🌐</div>
+        <div id="theme-toggle">🌙</div>
+    </div>
+</header>
+
+
+<section class="calc-hero">
+    <h1>建築碳排放計算器</h1>
+    <p>輸入材料重量或用量，即可估算碳排放量（kg CO₂e）。</p>
+</section>
+
+
+<section class="calculator-section">
+
+    <div class="calc-card">
+
+        <h2>輸入建材資訊</h2>
+
+        <label>材料種類</label>
+        <select id="material">
+            <option value="hdpe">HDPE（高密度聚乙烯）</option>
+            <option value="pvc">PVC（聚氯乙烯）</option>
+            <option value="steel">不鏽鋼</option>
+            <option value="concrete">混凝土</option>
+        </select>
+
+        <label>材料重量（kg）</label>
+        <input type="number" id="weight" placeholder="輸入重量…" />
+
+        <button id="calc-btn">計算碳排放</button>
+
+        <div class="calc-result" id="result-box">
+            <p>碳排放量：<span id="result">--</span> kg CO₂e</p>
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<footer class="deep-footer">
+
+    <div class="footer-grid">
+
+        <a href="../index.html" class="footer-logo-link">Greener X</a>
+
+        <div class="footer-text">
+            <p>GreenerX 致力於提供永續發展、碳管理與綠建築解決方案。</p>
+            <p>我們協助企業邁向低碳、創新、永續的未來。</p>
+        </div>
+
+        <div class="footer-links">
+            <a href="../index.html">Home</a>
+            <a href="../pages/case.html">Case</a>
+            <a href="../pages/calculator.html">Calculator</a>
+            <a href="../pages/about.html">About</a>
+            <a href="../pages/contact.html">Contact</a>
+            <a href="../pages/game.html">Game</a>
+        </div>
+
+    </div>
+    <div class="footer-copy-bottom">
+        © 2025 GreenerX — Building a Sustainable Future.
+    </div>
+
+</footer>
+
+
+<script>
+    const factors = {
+        hdpe: 1.9,
+        pvc: 2.1,
+        steel: 6.2,
+        concrete: 0.12
+    };
+
+    document.getElementById("calc-btn").addEventListener("click", () => {
+        const material = document.getElementById("material").value;
+        const weight = Number(document.getElementById("weight").value);
+
+        if (!weight || weight <= 0) {
+            alert("請輸入有效的重量！");
+            return;
+        }
+
+        const emission = (weight * factors[material]).toFixed(2);
+
+        document.getElementById("result").textContent = emission;
+        document.getElementById("result-box").style.display = "block";
+    });
+</script>
+
+</body>
+</html>
