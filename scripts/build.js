@@ -119,18 +119,15 @@ cleanDir(PUBLIC);
 //   }
 // }
 
-// console.log(" 5. Copying files");
-// const FILE_WHITELIST = [
-//   "favicon.ico",
-//   "robots.txt",
-//   "sitemap.xml",
-//   "site.webmanifest",
-// ];
-// for (const fileName of FILE_WHITELIST) {
-//   copyFile(
-//     path.join(ROOT, fileName),
-//     path.join(PUBLIC, fileName)
-//   );
-// }
+console.log(" 5. Copying files");
+const FILE_WHITELIST = [
+  "index.html",
+];
+for (const fileName of FILE_WHITELIST) {
+  copyFile(
+    path.join(ROOT, fileName),
+    path.join(PUBLIC, fileName)
+  );
+}
 
 console.log("✅  Build completed");

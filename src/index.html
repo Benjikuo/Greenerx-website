@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>404 Not Found | GreenerX</title>
+    <link rel="stylesheet" href="assets/css/theme.css">
+
+    <style>
+        :root {
+            --bg-color: #020617;
+            --card-bg: #1e293b;
+            --brand-color: #22c55e;
+            --brand-glow: rgba(34, 197, 94, 0.4);
+            --text-main: #ffffff;
+            --text-sub: #94a3b8;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bg-glow {
+            position: absolute;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, var(--brand-glow) 0%, transparent 60%);
+            opacity: 0.15;
+            filter: blur(80px);
+            z-index: 0;
+            animation: breathe 5s ease-in-out infinite alternate;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 600px;
+            padding: 20px;
+        }
+
+        .glitch-wrapper {
+            position: relative;
+            font-size: 120px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 20px;
+            letter-spacing: -5px;
+            color: var(--brand-color);
+            text-shadow: 0 0 30px var(--brand-glow);
+        }
+
+        .glitch-wrapper::before,
+        .glitch-wrapper::after {
+            content: "404";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--bg-color);
+        }
+
+        .glitch-wrapper::before {
+            left: 2px;
+            text-shadow: -2px 0 #ff00c1;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim 5s infinite linear alternate-reverse;
+        }
+
+        .glitch-wrapper::after {
+            left: -2px;
+            text-shadow: -2px 0 #00fff9;
+            clip: rect(44px, 450px, 56px, 0);
+            animation: glitch-anim-2 5s infinite linear alternate-reverse;
+        }
+
+        .alert-line {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(34, 197, 94, 0.1);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+            border-radius: 4px;
+            color: var(--brand-color);
+            font-size: 12px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            margin-bottom: 24px;
+            text-transform: uppercase;
+            animation: blink-glitch 4s infinite step-end;
+        }
+
+        h2 {
+            font-size: 28px;
+            margin: 0 0 16px 0;
+            font-weight: 700;
+        }
+        
+        .text-en {
+            display: block;
+            margin-bottom: 8px;
+            color: var(--text-main);
+        }
+        .text-cn {
+            display: block;
+            font-size: 0.85em;
+            opacity: 0.9;
+            font-weight: normal;
+        }
+
+        p {
+            color: var(--text-sub);
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0 auto 40px auto;
+            max-width: 480px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 16px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: rgba(30, 41, 59, 0.8);
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+            min-width: 110px;
+        }
+
+        .btn:hover {
+            border-color: var(--brand-color);
+            color: white;
+            box-shadow: 0 0 15px -3px var(--brand-glow);
+            transform: translateY(-2px);
+            background-color: rgba(34, 197, 94, 0.1);
+        }
+
+        .arrow-icon {
+            transition: transform 0.3s;
+            font-size: 1.1em;
+        }
+
+        .btn:hover .arrow-icon {
+            transform: translateX(4px);
+        }
+
+        @keyframes breathe {
+            0% { opacity: 0.15; transform: scale(1); }
+            100% { opacity: 0.25; transform: scale(1.1); }
+        }
+        @keyframes glitch-anim {
+            0%   { clip: rect(30px, 9999px, 40px, 0); }
+            10%   { clip: rect(50px, 9999px, 90px, 0); }
+            30%  { clip: rect(10px, 9999px, 60px, 0); }
+            35%  { clip: rect(20px, 9999px, 30px, 0); }
+            90% { clip: rect(60px, 9999px, 100px, 0); }
+        }
+        @keyframes glitch-anim-2 {
+            0%   { clip: rect(10px, 9999px, 80px, 0); }
+            5%   { clip: rect(30px, 9999px, 60px, 0); }
+            15%  { clip: rect(80px, 9999px, 20px, 0); }
+            70%  { clip: rect(70px, 9999px, 90px, 0); }
+            100% { clip: rect(20px, 9999px, 60px, 0); }
+        }
+        @keyframes blink-glitch {
+            0% { opacity: 1; }
+            40% { opacity: 0.4;}
+            41% { opacity: 1;}
+            93% { opacity: 0.2;}
+            96% { opacity: 1; }
+            97% { opacity: 0.6;}
+            99% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <div class="container">
+        <div class="alert-line">
+            System Error • 系統錯誤
+        </div>
+
+        <div class="glitch-wrapper" title="404">404</div>
+
+        <h2>
+            <span class="text-en">P∆GE NOT FOᴜND</span>
+            <span class="text-cn">這個頁面迷路了</span>
+        </h2>
+        
+        <p>
+            We can't seem to find the page you're looking for.
+            <br>
+            我們找不到您要前往的頁面，您可以返回首頁。
+        </p>
+
+        <div class="btn-group">
+            <a href="/zh/" class="btn">
+                中文首頁
+                <span class="arrow-icon">→</span>
+            </a>
+            
+            <a href="/en/" class="btn">
+                English Home
+                <span class="arrow-icon">→</span>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
