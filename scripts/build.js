@@ -99,25 +99,25 @@ function copyFile(from, to) {
 console.log(" 1. Cleaning public/");
 cleanDir(PUBLIC);
 
-// console.log(" 2. Copying pages/");
-// copyPages(path.join(SRC, "pages"), PUBLIC);
+console.log(" 2. Copying pages/");
+copyPages(path.join(SRC, "pages"), PUBLIC);
 
-// console.log(" 3. Copying news/");
-// copyNews(path.join(SRC, "news"), PUBLIC);
+console.log(" 3. Copying news/");
+copyNews(path.join(SRC, "news"), PUBLIC);
 
-// console.log(" 4. Copying other directories");
-// const DIR_WHITELIST = [
-//   "assets"
-// ];
-// for (const dirName of DIR_WHITELIST) {
-//   const srcDir = path.join(SRC, dirName);
+console.log(" 4. Copying other directories");
+const DIR_WHITELIST = [
+  "assets"
+];
+for (const dirName of DIR_WHITELIST) {
+  const srcDir = path.join(SRC, dirName);
 
-//   if (dirName === "pages") {
-//     copyPages(srcDir, path.join(PUBLIC, dirName));
-//   } else {
-//     copyDirectory(srcDir, path.join(PUBLIC, dirName));
-//   }
-// }
+  if (dirName === "pages") {
+    copyPages(srcDir, path.join(PUBLIC, dirName));
+  } else {
+    copyDirectory(srcDir, path.join(PUBLIC, dirName));
+  }
+}
 
 console.log(" 5. Copying files");
 const FILE_WHITELIST = [
