@@ -125,7 +125,7 @@ const FILE_WHITELIST = [
 ];
 for (const fileName of FILE_WHITELIST) {
   copyFile(
-    path.join(ROOT, fileName),
+    path.join(SRC, fileName),
     path.join(PUBLIC, fileName)
   );
 }
