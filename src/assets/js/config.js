@@ -5,17 +5,17 @@ export const CONFIG = {
 };
 
 export const MATERIAL = {
+  CAST_IRON: {
+    label: "CIP 排水鑄鐵管",
+    weightPerM: 15,
+    gwp: 2.0,
+    install: 2.0,
+  },
   PVC: {
     label: "PVC 排水管",
     weightPerM: 5,     // kg/m
     gwp: 2.7,          // kgCO2e/kg
     install: 0.8,      // kgCO2e/m
-  },
-  CAST_IRON: {
-    label: "排水鑄鐵管",
-    weightPerM: 15,
-    gwp: 2.0,
-    install: 2.0,
   },
   HDPE: {
     label: "HDPE 排水管",

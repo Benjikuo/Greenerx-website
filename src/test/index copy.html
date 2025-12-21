@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Greenerx | 建築的血管，決定城市的未來</title>
+    <meta name="description" content="Greenerx 提供革命性的建築管道系統解決方案。減少建築重量，降低碳排，提升結構安全。">
+    
+    <style>
+        :root {
+            --primary-50: #f0fdf4;
+            --primary-100: #dcfce7;
+            --primary-200: #bbf7d0;
+            --primary-400: #4ade80;
+            --primary-500: #22c55e;
+            --primary-600: #16a34a;
+            --primary-700: #15803d;
+            --primary-900: #14532d;
+            
+            --slate-50: #f8fafc;
+            --slate-100: #f1f5f9;
+            --slate-200: #e2e8f0;
+            --slate-300: #cbd5e1;
+            --slate-500: #64748b;
+            --slate-600: #475569;
+            --slate-800: #1e293b;
+            --slate-900: #0f172a;
+            --slate-950: #020617;
+            
+            --white: #ffffff;
+            --shadow-neon: 0 0 20px rgba(34, 197, 94, 0.4);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            
+            --font-sans: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans TC", sans-serif;
+        }
+
+        html.dark :root {
+            --bg-body: var(--slate-900);
+            --text-main: var(--slate-100);
+            --text-muted: var(--slate-500);
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            margin: 0;
+            padding: 0;
+            color: var(--slate-800);
+            background-color: var(--primary-50);
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+            line-height: 1.5;
+        }
+
+        body.dark {
+            background-color: var(--slate-900);
+            color: var(--slate-200);
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+        
+        a { text-decoration: none; color: inherit; }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            gap: 0.5rem;
+            border: none;
+            font-size: 0.875rem;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-600);
+            color: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        .btn-primary:hover {
+            background-color: var(--primary-700);
+            box-shadow: var(--shadow-neon);
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            background-color: var(--white);
+            color: var(--primary-600);
+            border: 2px solid var(--primary-100);
+        }
+        body.dark .btn-outline {
+            background-color: var(--slate-800);
+            color: var(--primary-400);
+            border-color: var(--slate-800);
+        }
+        .btn-outline:hover {
+            border-color: var(--primary-500);
+            transform: scale(1.05);
+        }
+
+        .text-gradient-green {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        nav {
+            position: fixed;
+            width: 100%;
+            z-index: 50;
+            background-color: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--primary-100);
+            height: 80px;
+            display: flex;
+            align-items: center;
+        }
+        body.dark nav {
+            background-color: rgba(15, 23, 42, 0.8);
+            border-bottom-color: var(--slate-800);
+        }
+
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 900;
+            font-size: 1.5rem;
+            color: var(--slate-900);
+            cursor: pointer;
+        }
+        body.dark .logo { color: var(--white); }
+        
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(to bottom right, var(--primary-600), var(--primary-500));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+
+        .nav-links {
+            display: none;
+            gap: 2rem;
+            align-items: center;
+        }
+        @media (min-width: 768px) {
+            .nav-links { display: flex; }
+        }
+
+        .nav-link {
+            font-size: 0.875rem;
+            font-weight: 500;
+            position: relative;
+        }
+        .nav-link:hover { color: var(--primary-600); }
+        body.dark .nav-link:hover { color: var(--primary-400); }
+
+        .nav-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--slate-300);
+        }
+
+        .nav-tools {
+            display: flex;
+            gap: 1rem;
+            align-items: center;
+        }
+
+        .btn-icon {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+            padding: 0.5rem;
+        }
+
+        .btn-mobile-menu {
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: inherit;
+            display: none;
+        }
+
+        #hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .tech-grid-bg {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+            z-index: 0;
+        }
+        body.dark .tech-grid-bg {
+             background-image: 
+                linear-gradient(to right, rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(34, 197, 94, 0.1) 1px, transparent 1px);
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 10;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            line-height: 1.2;
+            font-weight: 900;
+            margin-bottom: 2rem;
+            letter-spacing: -0.05em;
+        }
+        @media (min-width: 768px) { .hero-title { font-size: 4.5rem; } }
+
+        .hero-desc {
+            font-size: 1.25rem;
+            color: var(--slate-600);
+            max-width: 48rem;
+            margin: 0 auto 3rem auto;
+        }
+        body.dark .hero-desc { color: var(--slate-500); }
+
+        .hero-actions {
+            display: flex;
+            gap: 1.25rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-dark {
+            background: var(--slate-900);
+            color: white;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.375rem 1rem;
+            border-radius: 9999px;
+            background: white;
+            border: 1px solid var(--primary-100);
+            color: var(--primary-700);
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+        }
+        body.dark .badge {
+            background: var(--slate-800);
+            border-color: var(--primary-900);
+            color: var(--primary-200);
+        }
+
+        section { padding: 6rem 0; position: relative; }
+        
+        .section-white {
+            background: var(--white);
+        }
+
+        .grid-2 {
+            display: grid;
+            gap: 4rem;
+        }
+        @media (min-width: 768px) { .grid-2 { grid-template-columns: 1fr 1fr; align-items: center; } }
+
+        .section-title-md {
+            font-size: 2.25rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .section-desc-md {
+            color: var(--slate-500);
+            margin-bottom: 2rem;
+            font-size: 1.125rem;
+        }
+
+        .danger-box {
+            padding: 2rem;
+            background-color: #fef2f2;
+            border-left: 4px solid #ef4444;
+            border-radius: 0 1rem 1rem 0;
+        }
+        body.dark .danger-box { background-color: rgba(127, 29, 29, 0.2); }
+
+        .danger-title {
+            font-weight: 700;
+            font-size: 1.125rem;
+            margin-bottom: 1rem;
+        }
+
+        .danger-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .danger-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+        }
+
+        .icon-spacing {
+            margin-right: 0.75rem;
+        }
+
+        .img-placeholder {
+            aspect-ratio: 1/1;
+            background: var(--slate-100);
+            border-radius: 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .img-overlay {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(34,197,94,0.2), transparent);
+        }
+
+        .svg-placeholder {
+            color: var(--slate-300);
+        }
+
+        .info-box {
+            position: absolute;
+            bottom: 2rem;
+            left: 2rem;
+            right: 2rem;
+            background: rgba(255,255,255,0.9);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            backdrop-filter: blur(5px);
+        }
+
+        .info-header {
+            font-weight: 700;
+            color: var(--slate-500);
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .progress-track {
+            height: 0.75rem;
+            background: var(--slate-200);
+            border-radius: 99px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            width: 80%;
+            background: linear-gradient(to right, #ef4444, #f97316);
+            height: 100%;
+        }
+
+        .section-center {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-title-lg {
+            font-size: 2.5rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .section-desc-center {
+            color: var(--slate-500);
+            max-width: 40rem;
+            margin: 0 auto;
+        }
+
+        .card-container {
+            display: grid;
+            gap: 2.5rem;
+        }
+        @media (min-width: 768px) { .card-container { grid-template-columns: repeat(3, 1fr); } }
+
+        .feature-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 2rem;
+            border: 1px solid var(--primary-100);
+            box-shadow: var(--shadow-lg);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        body.dark .feature-card {
+            background: var(--slate-800);
+            border-color: var(--slate-600);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-neon);
+        }
+
+        .card-icon {
+            margin-bottom: 2rem;
+        }
+
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .card-desc {
+            color: var(--slate-500);
+            margin-bottom: 2rem;
+        }
+
+        .bg-dark {
+            background-color: var(--slate-900);
+            color: white;
+        }
+
+        .solution-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 1rem;
+        }
+
+        .text-accent {
+            color: var(--primary-400);
+        }
+
+        .counter-grid {
+            display: grid;
+            gap: 3rem;
+            margin-bottom: 4rem;
+            text-align: center;
+        }
+        @media (min-width: 768px) { .counter-grid { grid-template-columns: repeat(3, 1fr); } }
+
+        .counter-num {
+            font-size: 4rem;
+            font-weight: 900;
+            background: linear-gradient(to right, var(--primary-400), var(--primary-600));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .counter-label {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .counter-desc {
+            color: var(--primary-200);
+        }
+
+        .calc-container {
+            max-width: 900px;
+        }
+
+        .calc-header-margin {
+            margin-bottom: 3rem;
+        }
+
+        .calc-box {
+            background: white;
+            padding: 3rem;
+            border-radius: 3rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--primary-100);
+        }
+        body.dark .calc-box {
+            background: var(--slate-800);
+            border-color: var(--slate-600);
+        }
+
+        .calc-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .calc-content {
+            margin-bottom: 2rem;
+        }
+
+        .calc-input-label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        input[type=range] {
+            width: 100%;
+            height: 1rem;
+            background: var(--slate-200);
+            border-radius: 999px;
+            outline: none;
+            -webkit-appearance: none;
+        }
+        body.dark input[type=range] { background: var(--slate-600); }
+        
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 32px;
+            height: 32px;
+            background: var(--primary-500);
+            border: 4px solid white;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .calc-value-display {
+            text-align: right;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary-600);
+            margin-top: 1rem;
+        }
+
+        .calc-unit {
+            font-size: 1rem;
+            color: var(--slate-500);
+        }
+
+        .calc-results {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        .result-item-light {
+            padding: 1.5rem;
+            background: var(--primary-50);
+            border-radius: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .result-item-dark {
+            padding: 1.5rem;
+            background: var(--primary-100);
+            border-radius: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .result-label {
+            font-weight: 700;
+        }
+
+        .result-value-lg {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--primary-600);
+        }
+
+        .result-value-md {
+            font-size: 1.25rem;
+            font-weight: 900;
+            color: var(--primary-700);
+        }
+
+        .calc-footer {
+            text-align: center;
+        }
+
+        .calc-note {
+            font-size: 0.875rem;
+            color: var(--slate-500);
+            margin-bottom: 2rem;
+        }
+
+        .btn-full {
+            font-size: 1.125rem;
+            padding: 1rem 2rem;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .assess-section {
+            background: var(--slate-950);
+            text-align: center;
+            color: white;
+        }
+
+        .assess-title {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 2rem;
+        }
+
+        .assess-actions {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-outline-white {
+            background: transparent;
+            color: white;
+            border-color: var(--slate-600);
+        }
+
+        footer {
+            background-color: var(--slate-900);
+            color: var(--slate-500);
+            padding: 4rem 0;
+            border-top: 1px solid var(--slate-800);
+            font-size: 0.875rem;
+        }
+        .footer-grid {
+            display: grid;
+            gap: 3rem;
+        }
+        @media (min-width: 768px) { .footer-grid { grid-template-columns: 2fr 1fr 1fr; } }
+
+        .footer-logo {
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-heading {
+            color: white;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .copyright {
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--slate-800);
+            text-align: center;
+        }
+        
+        .anim-hidden { opacity: 0; transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .slide-in-up { transform: translateY(80px) scale(0.9); }
+        .slide-in-left { transform: translateX(-120px) scale(0.85); }
+        .slide-in-right { transform: translateX(120px) scale(0.85); }
+        .anim-active { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
+
+        .icon { width: 1.25em; height: 1.25em; fill: currentColor; display: inline-block; vertical-align: middle; }
+        .icon-lg { width: 2.5em; height: 2.5em; }
+        .text-red { color: #ef4444; }
+        .text-orange { color: #f97316; }
+        .text-blue { color: #3b82f6; }
+        .text-primary { color: var(--primary-500); }
+        
+        .hidden { display: none; }
+        .inline-block { display: inline-block; }
+
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo" onclick="window.scrollTo(0,0)">
+                    <div class="logo-icon">G</div>
+                    <span>greenerx</span>
+                </div>
+
+                <div class="nav-links">
+                    <a href="#why" class="nav-link">為什麼重要</a>
+                    <a href="#solution" class="nav-link">解決方案</a>
+                    <a href="#calculator" class="nav-link">碳排計算機</a>
+                    <a href="#cases" class="nav-link">案例與洞察</a>
+                    
+                    <div class="nav-divider"></div>
+
+                    <a href="#assess" class="btn btn-primary">
+                        <span>立即評估</span>
+                    </a>
+                </div>
+
+                <div class="nav-tools">
+                    <button id="theme-toggle" class="btn-icon">
+                        <svg class="icon hidden dark-show" viewBox="0 0 24 24"><path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z" /></svg>
+                        <svg class="icon dark-hide" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.7-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z" clip-rule="evenodd" /></svg>
+                    </button>
+                    <button class="md:hidden btn-mobile-menu">
+                        <svg class="icon" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z" clip-rule="evenodd" /></svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section id="hero">
+        <div class="tech-grid-bg"></div>
+        
+        <div class="container hero-content">
+            <div class="anim-hidden slide-in-up" data-delay="100">
+                <div class="badge">
+                    <svg class="icon text-primary" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M14.615 1.595a.75.75 0 01.359.852L12.982 9.75h7.268a.75.75 0 01.548 1.262l-10.5 11.25a.75.75 0 01-1.272-.71l1.992-7.302H3.75a.75.75 0 01-.548-1.262l10.5-11.25a.75.75 0 01.913-.143z" clip-rule="evenodd" /></svg>
+                    AEO 優化：建築隱形風險指南
+                </div>
+                
+                <h1 class="hero-title">
+                    建築的碳排與安全，<br>
+                    在<span class="text-gradient-green">看不見的地方</span><br>
+                    就已經決定了。
+                </h1>
+                
+                <p class="hero-desc">
+                    一棟建築的命運，往往在完工前就已經「鎖死」。<br>
+                    別讓傳統管道選擇，成為未來數十年的隱形成本。
+                </p>
+                
+                <div class="hero-actions">
+                    <a href="#why" class="btn btn-dark">
+                        <span>探索隱形風險</span>
+                        <svg class="icon" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.25a.75.75 0 01.75.75v16.19l2.47-2.47a.75.75 0 111.06 1.06l-3.75 3.75a.75.75 0 01-1.06 0l-3.75-3.75a.75.75 0 111.06-1.06l2.47 2.47V3a.75.75 0 01.75-.75z" clip-rule="evenodd" /></svg>
+                    </a>
+                    <a href="#calculator" class="btn btn-outline">
+                        <svg class="icon" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm11.378-3.917c-.89-.777-2.366-.777-3.255 0a.75.75 0 01-.988-1.129c1.454-1.272 3.765-1.272 5.219 0a.75.75 0 01-.976 1.13zM12 18a.75.75 0 100-1.5.75.75 0 000 1.5z" clip-rule="evenodd" /></svg>
+                        計算建築影響
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why" class="section-white">
+        <div class="container">
+            <div class="grid-2">
+                <div class="anim-hidden slide-in-left">
+                    <h2 class="section-title-md">
+                        管道，是建築的血管<br><span class="text-gradient-green">卻長期被低估</span>
+                    </h2>
+                    <p class="section-desc-md">
+                        就像人體一樣，血管是否順暢，決定整體健康。在多數建案中，管道只被視為「看不到的設備」，只要能過法規、越便宜越好。
+                    </p>
+                    
+                    <div class="danger-box">
+                        <p class="text-red danger-title">不可逆的代價：</p>
+                        <ul class="danger-list">
+                            <li>
+                                <svg class="icon text-red icon-spacing" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" /></svg>
+                                重量過重，增加施工風險
+                            </li>
+                            <li>
+                                <svg class="icon text-red icon-spacing" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" /></svg>
+                                施工複雜，放大工安問題
+                            </li>
+                            <li>
+                                <svg class="icon text-red icon-spacing" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zm-1.72 6.97a.75.75 0 10-1.06 1.06L10.94 12l-1.72 1.72a.75.75 0 101.06 1.06L12 13.06l1.72 1.72a.75.75 0 101.06-1.06L13.06 12l1.72-1.72a.75.75 0 10-1.06-1.06L12 10.94l-1.72-1.72z" clip-rule="evenodd" /></svg>
+                                高碳排材料，鎖定數十年
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="anim-hidden slide-in-right">
+                   <div class="img-placeholder">
+                        <div class="img-overlay"></div>
+                        <svg width="200" height="200" viewBox="0 0 200 200" class="svg-placeholder">
+                             <path d="M20 100 H180" stroke="currentColor" stroke-width="20" stroke-linecap="round" />
+                             <path d="M100 20 V180" stroke="currentColor" stroke-width="20" stroke-linecap="round" />
+                             <circle cx="100" cy="100" r="30" fill="var(--primary-200)" />
+                        </svg>
+                        
+                        <div class="info-box">
+                            <div class="info-header">
+                                <span>當前狀態：隱形</span>
+                                <span class="text-red">⚠ 風險累積中</span>
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill"></div>
+                            </div>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <div class="container">
+            <div class="section-center anim-hidden slide-in-up">
+                <h2 class="section-title-lg">
+                    傳統管道正在製造<br><span class="text-gradient-green">三個巨大的隱形成本</span>
+                </h2>
+                <p class="section-desc-center">這不是小零件，而是系統性問題。</p>
+            </div>
+
+            <div class="card-container">
+                <div class="feature-card tilt-card anim-hidden slide-in-up" data-delay="0">
+                    <div class="card-icon">
+                        <svg class="icon-lg text-orange" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M12 2.25a.75.75 0 01.75.75v.231a7.48 7.48 0 016.32 7.02l.66 6.593a.75.75 0 01-.747.825H4.994a.75.75 0 01-.747-.825l.66-6.593a7.48 7.48 0 016.32-7.02V3a.75.75 0 01.75-.75z" clip-rule="evenodd" /></svg>
+                    </div>
+                    <h3 class="card-title">① 公共安全成本</h3>
+                    <p class="card-desc">台灣營造業職災長期占比最高。過重的管道意味著更高的吊裝風險、墜落與倒塌危機。</p>
+                </div>
+
+                <div class="feature-card tilt-card anim-hidden slide-in-up" data-delay="100">
+                     <div class="card-icon">
+                        <svg class="icon-lg text-blue" viewBox="0 0 24 24"><path d="M11.645 20.91l-.007-.003-.022-.012a15.247 15.247 0 01-.383-.218 25.18 25.18 0 01-4.244-3.17C4.688 15.36 2.25 12.174 2.25 8.25 2.25 5.322 4.714 3 7.688 3A5.5 5.5 0 0112 5.052 5.5 5.5 0 0116.313 3c2.973 0 5.437 2.322 5.437 5.25 0 3.925-2.438 7.111-4.739 9.256a25.175 25.175 0 01-4.244 3.17 15.247 15.247 0 01-.383.219l-.022.012-.007.004-.003.001a.752.752 0 01-.704 0l-.003-.001z" /></svg>
+                    </div>
+                    <h3 class="card-title">② 結構與維護成本</h3>
+                    <p class="card-desc">鑄鐵管重量驚人，增加結構負擔；PVC 易脆。漏水點多，維修成本被嚴重低估。</p>
+                </div>
+
+                <div class="feature-card tilt-card anim-hidden slide-in-up" data-delay="200">
+                     <div class="card-icon">
+                        <svg class="icon-lg text-primary" viewBox="0 0 24 24"><path fill-rule="evenodd" d="M11.484 2.17a.75.75 0 011.032 0 11.209 11.209 0 007.877 3.08.75.75 0 01.75.75 11.209 11.209 0 003.08 7.877.75.75 0 010 1.032 11.209 11.209 0 00-3.08 7.877.75.75 0 01-.75.75 11.209 11.209 0 00-7.877 3.08.75.75 0 01-1.032 0 11.209 11.209 0 00-7.877-3.08.75.75 0 01-.75-.75 11.209 11.209 0 00-3.08-7.877.75.75 0 010-1.032 11.209 11.209 0 003.08-7.877.75.75 0 01.75-.75 11.209 11.209 0 007.877-3.08z" clip-rule="evenodd" /></svg>
+                    </div>
+                    <h3 class="card-title">③ 碳排與永續成本</h3>
+                    <p class="card-desc">傳統管材製造與運輸碳排高。若無法回收或燃燒產生有毒物質，一開始選錯，就無法回頭。</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="solution" class="bg-dark">
+        <div class="container">
+            <div class="section-center anim-hidden slide-in-up">
+                <h2 class="solution-title">
+                    建築減重，<br>是<span class="text-accent">安全與永續</span>的關鍵
+                </h2>
+            </div>
+
+            <div class="counter-grid">
+                <div class="anim-hidden slide-in-left">
+                    <div class="counter-num counter" data-target="100">0</div>
+                    <div class="counter-label">噸 (Tons)</div>
+                    <p class="counter-desc">單一高層建築可減少的管道重量</p>
+                </div>
+                <div class="anim-hidden slide-in-up" data-delay="100">
+                    <div class="counter-num counter" data-target="1000">0</div>
+                    <div class="counter-label">個 (Points)</div>
+                    <p class="counter-desc">潛在漏水點直接消失</p>
+                </div>
+                <div class="anim-hidden slide-in-right" data-delay="200">
+                    <div class="counter-num">100%</div>
+                    <div class="counter-label">可回收</div>
+                    <p class="counter-desc">符合循環經濟，無毒安全</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="calculator">
+        <div class="container calc-container">
+            <div class="section-center calc-header-margin anim-hidden slide-in-up">
+                <h2 class="section-title-lg">現在可以怎麼做？</h2>
+                <p class="section-desc-center">真正的差別，在於把建築規模轉成材料用量。</p>
+            </div>
+
+            <div class="calc-box anim-hidden slide-in-up">
+                <h3 class="calc-title">
+                    快速試算：您的建築可以減重多少？
+                </h3>
+                
+                <div class="grid-2 calc-content">
+                    <div>
+                        <label class="calc-input-label">建築樓層數 (Floors)</label>
+                        <input type="range" min="5" max="50" value="20" oninput="updateCalc(this.value)">
+                        <div class="calc-value-display">
+                            <span id="floor-val">20</span> <span class="calc-unit">層樓</span>
+                        </div>
+                    </div>
+                    
+                    <div class="calc-results">
+                        <div class="result-item-light">
+                            <span class="result-label">預估減少重量</span>
+                            <span class="result-value-lg"><span id="weight-save">45</span> 噸</span>
+                        </div>
+                        <div class="result-item-dark">
+                            <span class="result-label">碳排降低潛力</span>
+                            <span class="result-value-md">極高 ↓</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="calc-footer">
+                    <p class="calc-note">*此為粗估數值，實際影響需根據建築設計詳細計算。</p>
+                    <button class="btn btn-primary btn-full">
+                        取得完整分析報告
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="assess" class="assess-section">
+        <div class="container anim-hidden slide-in-up">
+            <h2 class="assess-title">
+                看不見的管道，<br>正在決定看得見的未來。
+            </h2>
+            <div class="assess-actions">
+                <a href="#" class="btn btn-primary">
+                    立即評估您的專案
+                </a>
+                <a href="#" class="btn btn-outline btn-outline-white">
+                    看看真實案例
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <div class="logo footer-logo">
+                        <div class="logo-icon">G</div>
+                        <span>greenerx</span>
+                    </div>
+                    <p>致力於以創新材料科技，重新定義建築的隱形基礎設施。</p>
+                </div>
+                <div>
+                    <h4 class="footer-heading">解決方案</h4>
+                    <ul class="footer-list">
+                        <li><a href="#">輕量化管道系統</a></li>
+                        <li><a href="#">碳排計算服務</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="footer-heading">公司資訊</h4>
+                    <ul class="footer-list">
+                        <li><a href="#">關於我們</a></li>
+                        <li><a href="#">聯絡我們</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Greenerx. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+             html.classList.add('dark');
+             updateIcons(true);
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            const isDark = html.classList.contains('dark');
+            updateIcons(isDark);
+        });
+
+        function updateIcons(isDark) {
+            const sun = document.querySelector('.dark-hide');
+            const moon = document.querySelector('.dark-show');
+            if(isDark) {
+                if(sun) sun.style.display = 'none';
+                if(moon) moon.style.display = 'inline-block';
+            } else {
+                if(sun) sun.style.display = 'inline-block';
+                if(moon) moon.style.display = 'none';
+            }
+        }
+        updateIcons(html.classList.contains('dark'));
+
+        function updateCalc(floors) {
+            document.getElementById('floor-val').innerText = floors;
+            let saved = (floors * 2.25).toFixed(0); 
+            animateValue(document.getElementById('weight-save'), parseInt(document.getElementById('weight-save').innerText), saved, 500);
+        }
+        
+        function animateValue(obj, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.getAttribute('data-delay') || 0;
+                    setTimeout(() => {
+                         entry.target.classList.add('anim-active');
+                    }, delay);
+                    
+                    if(entry.target.querySelectorAll('.counter').length > 0 && !entry.target.classList.contains('counted')) {
+                        startCounters(entry.target);
+                        entry.target.classList.add('counted');
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.anim-hidden').forEach(el => observer.observe(el));
+
+        function startCounters(section) {
+            const counters = section.querySelectorAll('.counter');
+            counters.forEach(counter => {
+                const target = +counter.getAttribute('data-target');
+                const speed = 200; 
+                const updateCount = () => {
+                    const targetText = counter.innerText.replace(/,/g, '').replace('+', '');
+                    const count = +targetText;
+                    const inc = target / speed;
+                    if(count < target) {
+                        counter.innerText = Math.ceil(count + inc);
+                        setTimeout(updateCount, 30);
+                    } else {
+                        counter.innerText = target.toLocaleString() + (target >= 100 ? "+" : "%");
+                    }
+                };
+                updateCount();
+            });
+        }
+    </script>
+</body>
+</html>

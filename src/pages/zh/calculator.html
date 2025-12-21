@@ -1,315 +1,296 @@
-<!doctype html>
-<html lang="zh-Hant">
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>排水管材減碳計算機 | GreenerX</title>
-  <style>
-    :root {
-      --bg-color: #020617;
-      --card-bg: rgba(30, 41, 59, 0.7);
-      --input-bg: rgba(15, 23, 42, 0.6);
-      --brand-color: #22c55e;
-      --brand-glow: rgba(34, 197, 94, 0.4);
-      --text-main: #ffffff;
-      --text-sub: #94a3b8;
-      --border-color: rgba(255, 255, 255, 0.1);
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>排水管材減碳計算機 | GreenerX</title>
+    <meta name="description" content="GreenerX 專業減碳計算工具，協助您評估建案的碳排潛力與結構減重效益。">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    body {
-      margin: 0;
-      padding: 40px 20px;
-      background-color: var(--bg-color);
-      color: var(--text-main);
-      font-family: system-ui, -apple-system, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      position: relative;
-    }
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                        mono: ['Menlo', 'Monaco', 'Courier New', 'monospace'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        slate: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(34, 197, 94, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Base Transitions */
+        * { transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease; }
+        
+        /* Animation Classes */
+        .anim-hidden { opacity: 0; transition: all 0.8s ease-out; }
+        .slide-in-up { transform: translateY(40px); }
+        .anim-active { opacity: 1; transform: translateY(0); }
 
-    /* 背景特效 */
-    .bg-grid {
-      position: absolute;
-      inset: 0;
-      background-image:
-        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-      background-size: 40px 40px;
-      z-index: -1;
-      pointer-events: none;
-    }
+        /* Background Pattern */
+        .tech-grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .dark .tech-grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(34, 197, 94, 0.1) 1px, transparent 1px);
+        }
 
-    .bg-glow {
-      position: absolute;
-      top: -100px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 600px;
-      height: 600px;
-      background: radial-gradient(circle, var(--brand-glow) 0%, transparent 70%);
-      opacity: 0.2;
-      filter: blur(80px);
-      z-index: -1;
-      pointer-events: none;
-    }
+        /* Custom Form Styling */
+        .form-input {
+            transition: all 0.3s;
+        }
+        .form-input:focus {
+            box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.2);
+        }
 
-    /* 主容器 */
-    .calculator-container {
-      width: 100%;
-      max-width: 800px;
-      background: var(--card-bg);
-      backdrop-filter: blur(12px);
-      border: 1px solid var(--border-color);
-      border-radius: 24px;
-      padding: 40px;
-      box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
-    }
-
-    h1 {
-      text-align: center;
-      margin-top: 0;
-      margin-bottom: 30px;
-      font-weight: 800;
-      letter-spacing: -1px;
-      background: linear-gradient(to right, #fff, #94a3b8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    /* 表單佈局 */
-    form {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 24px;
-      margin-bottom: 40px;
-    }
-
-    .form-group {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .form-group.full-width {
-      grid-column: span 2;
-    }
-
-    label {
-      font-size: 14px;
-      color: var(--text-sub);
-      font-weight: 500;
-    }
-
-    /* 輸入框樣式 */
-    input[type="number"],
-    select {
-      background: var(--input-bg);
-      border: 1px solid var(--border-color);
-      color: #fff;
-      padding: 12px 16px;
-      border-radius: 8px;
-      font-size: 16px;
-      transition: all 0.3s ease;
-      outline: none;
-    }
-
-    input[type="number"]:focus,
-    select:focus {
-      border-color: var(--brand-color);
-      box-shadow: 0 0 15px -3px var(--brand-glow);
-    }
-
-    /* 核取方塊自訂樣式 */
-    .checkbox-wrapper {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      cursor: pointer;
-      user-select: none;
-      margin-top: 10px;
-    }
-
-    input[type="checkbox"] {
-      appearance: none;
-      width: 20px;
-      height: 20px;
-      background: var(--input-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      position: relative;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-
-    input[type="checkbox"]:checked {
-      background-color: var(--brand-color);
-      border-color: var(--brand-color);
-    }
-
-    input[type="checkbox"]:checked::after {
-      content: '✔';
-      position: absolute;
-      color: #000;
-      font-size: 14px;
-      left: 3px;
-      top: -1px;
-      font-weight: bold;
-    }
-
-    /* 按鈕樣式 */
-    button[type="submit"] {
-      grid-column: span 2;
-      background: var(--brand-color);
-      color: #000;
-      font-weight: bold;
-      padding: 14px;
-      border: none;
-      border-radius: 8px;
-      font-size: 16px;
-      cursor: pointer;
-      transition: all 0.3s;
-      margin-top: 10px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
-    button[type="submit"]:hover {
-      background: #4ade80;
-      box-shadow: 0 0 20px var(--brand-glow);
-      transform: translateY(-2px);
-    }
-
-    /* 分隔線 */
-    hr {
-      border: 0;
-      height: 1px;
-      background: linear-gradient(to right, transparent, var(--border-color), transparent);
-      margin: 0 0 40px 0;
-    }
-
-    /* 表格樣式 */
-    .table-container {
-      overflow-x: auto;
-    }
-
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 15px;
-    }
-
-    th {
-      text-align: left;
-      padding: 16px;
-      color: var(--brand-color);
-      border-bottom: 1px solid var(--border-color);
-      font-weight: 600;
-      text-transform: uppercase;
-      font-size: 12px;
-      letter-spacing: 1px;
-    }
-
-    td {
-      padding: 16px;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
-      color: var(--text-main);
-    }
-
-    /* 讓數字使用等寬字體，看起來更像數據 */
-    td:not(:first-child) {
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 1.1em;
-    }
-
-    tr:last-child td {
-      border-bottom: none;
-    }
-
-    tr:hover td {
-      background-color: rgba(34, 197, 94, 0.05);
-    }
-
-    /* 手機版適配 */
-    @media (max-width: 600px) {
-      form {
-        grid-template-columns: 1fr;
-      }
-      .form-group.full-width {
-        grid-column: span 1;
-      }
-      button[type="submit"] {
-        grid-column: span 1;
-      }
-      .calculator-container {
-        padding: 24px;
-      }
-    }
-  </style>
+        /* Custom Checkbox */
+        .custom-checkbox:checked {
+            background-color: #22c55e;
+            border-color: #22c55e;
+        }
+        .custom-checkbox:checked + div {
+            opacity: 1;
+        }
+    </style>
 </head>
+<body class="font-sans text-slate-800 bg-primary-50/50 dark:bg-slate-900 dark:text-gray-200 overflow-x-hidden flex flex-col min-h-screen">
 
-<body>
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-primary-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
+                    <div class="w-9 h-9 bg-gradient-to-br from-primary-600 to-primary-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg group-hover:shadow-primary-500/30 transition-all duration-300 group-hover:scale-110">G</div>
+                    <span class="font-black text-2xl tracking-tighter text-slate-900 dark:text-white">greenerx</span>
+                </a>
 
-  <div class="bg-grid"></div>
-  <div class="bg-glow"></div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="../" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">為什麼重要</a>
+                    <a href="../solution/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">解決方案</a>
+                    <a href="../calculator/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">碳排計算機</a>
+                    <a href="../insights/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">案例與洞察</a>
+                    
+                    <div class="h-6 w-px bg-gray-300 dark:bg-slate-700"></div>
 
-  <div class="calculator-container">
-    <h1>排水管材減碳計算機</h1>
+                    <a href="../estimate/" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-md hover:shadow-neon transition-all duration-300">
+                        立即評估
+                    </a>
+                </div>
 
-    <form id="calc-form">
-      
-      <div class="form-group full-width">
-        <label for="buildingType">建築用途</label>
-        <select id="buildingType">
-          <option value="RESIDENTIAL">住宅 (Residential)</option>
-          <option value="HOTEL">飯店 (Hotel)</option>
-          <option value="OFFICE">辦公 (Office)</option>
-        </select>
-      </div>
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" class="p-2 rounded-full bg-primary-100 dark:bg-slate-800 text-primary-600 dark:text-primary-400 hover:scale-110 transition-transform">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                    <button class="md:hidden p-2 text-slate-600 dark:text-gray-300">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
 
-      <div class="form-group">
-        <label for="units">戶數</label>
-        <input id="units" type="number" value="120" placeholder="輸入戶數">
-      </div>
+    <main class="flex-grow pt-32 pb-20 relative">
+        <div class="absolute inset-0 tech-grid-bg pointer-events-none fixed"></div>
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-primary-400/20 dark:bg-primary-600/10 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-soft-light pointer-events-none"></div>
 
-      <div class="form-group">
-        <label for="floors">樓層數</label>
-        <input id="floors" type="number" value="15" placeholder="輸入樓層">
-      </div>
+        <div class="max-w-4xl mx-auto px-4 relative z-10">
+            
+            <div class="text-center mb-12 anim-hidden slide-in-up">
+                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 border border-primary-200 dark:border-primary-500/30 text-primary-700 dark:text-primary-400 text-xs font-bold mb-6">
+                    <i class="fas fa-calculator"></i> PRO VERSION
+                </div>
+                <h1 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-6">
+                    排水管材<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">減碳計算機</span>
+                </h1>
+                <p class="text-slate-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+                    輸入建案參數，立即比較不同管材的碳足跡與重量差異。數據採用 ISO 14067 標準係數。
+                </p>
+            </div>
 
-      <div class="form-group full-width">
-        <label class="checkbox-wrapper">
-          <input id="basement" type="checkbox">
-          <span>含地下室結構</span>
-        </label>
-      </div>
+            <div class="bg-white dark:bg-slate-800 rounded-[2rem] shadow-2xl border border-primary-100 dark:border-slate-700 overflow-hidden anim-hidden slide-in-up" data-delay="100">
+                
+                <div class="p-8 md:p-12">
+                    <form id="calc-form" class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        
+                        <div class="col-span-1 md:col-span-2">
+                            <label for="buildingType" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">建築用途 (Building Type)</label>
+                            <div class="relative">
+                                <select id="buildingType" class="form-input w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-5 py-4 text-slate-900 dark:text-white appearance-none cursor-pointer font-medium focus:outline-none focus:border-primary-500">
+                                    <option value="RESIDENTIAL">住宅 (Residential)</option>
+                                    <option value="HOTEL">飯店 (Hotel)</option>
+                                    <option value="OFFICE">辦公 (Office)</option>
+                                </select>
+                                <div class="absolute right-5 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
+                                    <i class="fas fa-chevron-down"></i>
+                                </div>
+                            </div>
+                        </div>
 
-      <button type="submit">開始計算 (Calculate)</button>
-    </form>
+                        <div>
+                            <label for="units" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">總戶數 (Units)</label>
+                            <input id="units" type="number" value="120" placeholder="例如：120" class="form-input w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-5 py-4 text-slate-900 dark:text-white font-medium focus:outline-none focus:border-primary-500">
+                        </div>
 
-    <hr>
+                        <div>
+                            <label for="floors" class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">樓層數 (Floors)</label>
+                            <input id="floors" type="number" value="15" placeholder="例如：15" class="form-input w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-5 py-4 text-slate-900 dark:text-white font-medium focus:outline-none focus:border-primary-500">
+                        </div>
 
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>管材類型</th>
-            <th>重量 (kg)</th>
-            <th>總碳排 (kg CO₂e)</th>
-          </tr>
-        </thead>
-        <tbody id="result-body">
-          <tr>
-            <td colspan="3" style="text-align: center; color: var(--text-sub); padding: 30px;">
-              等待輸入資料...
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
+                        <div class="col-span-1 md:col-span-2 flex items-center">
+                            <label class="flex items-center gap-3 cursor-pointer group select-none">
+                                <div class="relative">
+                                    <input id="basement" type="checkbox" class="custom-checkbox appearance-none w-6 h-6 border-2 border-slate-300 dark:border-slate-600 rounded-md bg-white dark:bg-slate-900 transition-colors">
+                                    <div class="absolute inset-0 flex items-center justify-center opacity-0 transition-opacity text-white pointer-events-none">
+                                        <i class="fas fa-check text-xs"></i>
+                                    </div>
+                                </div>
+                                <span class="text-slate-700 dark:text-slate-300 font-medium group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">包含地下室結構 (Include Basement)</span>
+                            </label>
+                        </div>
 
-  <script type="module" src="../../assets/js/main.js"></script>
+                        <div class="col-span-1 md:col-span-2 mt-4">
+                            <button type="submit" class="w-full bg-primary-600 hover:bg-primary-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary-600/30 hover:shadow-neon transform hover:-translate-y-1 transition-all flex items-center justify-center gap-2">
+                                <i class="fas fa-calculator"></i> 開始計算 (Calculate)
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="border-t border-slate-100 dark:border-slate-700 bg-slate-50/50 dark:bg-slate-900/50 p-8 md:p-12">
+                    <h3 class="text-lg font-bold text-slate-800 dark:text-white mb-6 flex items-center gap-2">
+                        <i class="fas fa-chart-bar text-primary-500"></i> 計算結果
+                    </h3>
+                    
+                    <div class="overflow-x-auto rounded-xl border border-slate-200 dark:border-slate-700 bg-white dark:bg-slate-800">
+                        <table class="w-full text-left">
+                            <thead>
+                                <tr class="bg-slate-100 dark:bg-slate-700/50 border-b border-slate-200 dark:border-slate-700">
+                                    <th class="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">管材類型</th>
+                                    <th class="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">總重量 (kg)</th>
+                                    <th class="p-4 text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider">總碳排 (kg CO₂e)</th>
+                                </tr>
+                            </thead>
+                            <tbody id="result-body" class="divide-y divide-slate-100 dark:divide-slate-700">
+                                <tr>
+                                    <td colspan="3" class="p-8 text-center text-slate-400 dark:text-slate-500">
+                                        <div class="flex flex-col items-center gap-2">
+                                            <i class="fas fa-inbox text-2xl mb-2 opacity-50"></i>
+                                            <span>請輸入參數並點擊計算</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-8 text-center anim-hidden slide-in-up" data-delay="200">
+                <a href="#" class="inline-flex items-center gap-2 text-sm text-slate-500 hover:text-primary-500 transition-colors">
+                    <i class="fas fa-file-download"></i> 下載完整 EPD 報告範本
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-16 text-sm text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-12 mb-12">
+            <div class="col-span-2">
+                 <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">G</div>
+                    <span class="font-black text-2xl text-white tracking-tighter">greenerx</span>
+                </div>
+                <p class="text-base max-w-md">致力於以創新材料科技，重新定義建築的隱形基礎設施，打造更安全、更永續的城市未來。</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">解決方案</h4>
+                <ul class="space-y-4">
+                    <li><a href="#" class="hover:text-primary-400 transition">輕量化管道系統</a></li>
+                    <li><a href="#" class="hover:text-primary-400 transition">碳排計算服務</a></li>
+                    <li><a href="#" class="hover:text-primary-400 transition">EPD 認證協助</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">公司資訊</h4>
+                 <ul class="space-y-4">
+                    <li><a href="#" class="hover:text-primary-400 transition">關於我們</a></li>
+                    <li><a href="#" class="hover:text-primary-400 transition">聯絡我們</a></li>
+                    <li><a href="#" class="hover:text-primary-400 transition">隱私權政策</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2025 Greenerx. All rights reserved.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script type="module" src="../../assets/js/main.js"></script>
+
+    <script>
+        // Dark Mode Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+             html.classList.add('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+        });
+
+        // Animation Logic
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.getAttribute('data-delay') || 0;
+                    setTimeout(() => {
+                         entry.target.classList.add('anim-active');
+                    }, delay);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.anim-hidden').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>

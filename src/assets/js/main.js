@@ -20,8 +20,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const length = calculateTotalLength(units, floors, hasBasement);
 
     const results = [
-      calculateMaterial("PVC", length),
       calculateMaterial("CAST_IRON", length),
+      calculateMaterial("PVC", length),
       calculateMaterial("HDPE", length),
     ];
 

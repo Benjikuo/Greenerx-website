@@ -1,0 +1,28 @@
+:root {
+  --bg-color: #020617;
+  --card-bg: #1e293b;
+
+  --brand-color: #22c55e;
+  --brand-light: #4ade80;
+  --brand-glow: rgba(34, 197, 94, 0.4);
+
+  --text-main: #ffffff;
+  --text-sub: #94a3b8;
+}
+
+body {
+  margin: 0;
+  background-color: var(--bg-color);
+  color: var(--text-main);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: 0;
+}
