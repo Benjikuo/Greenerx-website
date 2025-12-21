@@ -35,7 +35,7 @@ function copyPages(from, to) {
     }
 
     if (path.extname(item) === ".html") {
-      if (item === "index.html") {
+      if (item === "index.html" || item === "404.html") {
         fs.copyFileSync(srcPath, path.join(to, "index.html"));
       } else {
         const name = path.basename(item, ".html");
@@ -43,6 +43,31 @@ function copyPages(from, to) {
 
         fs.mkdirSync(pageDir, { recursive: true });
         fs.copyFileSync(srcPath, path.join(pageDir, "index.html"));
+      }
+    }
+  }
+}
+
+function copyNews(from, to) {
+  if (!fs.existsSync(from)) return;
+
+  const languages = fs.readdirSync(from);
+  
+  for (const lang of languages) {
+    const langSrc = path.join(from, lang);
+    if (!fs.statSync(langSrc).isDirectory()) continue;
+
+    const targetDir = path.join(to, lang, "insights");
+    fs.mkdirSync(targetDir, { recursive: true });
+
+    for (const item of fs.readdirSync(langSrc)) {
+      const srcPath = path.join(langSrc, item);
+      const destPath = path.join(targetDir, item);
+
+      if (fs.statSync(srcPath).isDirectory()) {
+        copyDirectory(srcPath, destPath);
+      } else {
+        fs.copyFileSync(srcPath, destPath);
       }
     }
   }
@@ -77,7 +102,10 @@ cleanDir(PUBLIC);
 console.log(" 2. Copying pages/");
 copyPages(path.join(SRC, "pages"), PUBLIC);
 
-console.log(" 3. Copying other directories");
+console.log(" 3. Copying news/");
+copyNews(path.join(SRC, "news"), PUBLIC);
+
+console.log(" 4. Copying other directories");
 const DIR_WHITELIST = [
   "assets",
   "i18n"
@@ -92,7 +120,7 @@ for (const dirName of DIR_WHITELIST) {
   }
 }
 
-console.log(" 4. Copying files");
+console.log(" 5. Copying files");
 const FILE_WHITELIST = [
   "favicon.ico",
   "robots.txt",

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GreenerX - Mini Game</title>
+    <title>GreenerX - Contact Us</title>
     <link rel="stylesheet" href="../assets/css/style.css" />
 </head>
 
@@ -29,18 +29,29 @@
 </header>
 
 
-<section class="game-hero">
-    <h1>🌿 Click the Leaf!</h1>
-    <p>在 30 秒內盡可能多地點擊綠葉。</p>
+<section class="contact-hero">
+    <h1>聯絡我們</h1>
+    <p>如您有任何永續相關問題、合作機會、或希望進行碳足跡評估，歡迎填寫下方表單。</p>
 </section>
 
-<section class="game-container">
-    <div class="scoreboard">
-        <p>分數：<span id="score">0</span></p>
-        <p>時間：<span id="time">30</span>s</p>
-    </div>
 
-    <div id="leaf">🍃</div>
+<section class="contact-form-section">
+    <form class="contact-form">
+
+        <label>您的姓名</label>
+        <input type="text" placeholder="請輸入您的名字" required>
+
+        <label>電子郵件</label>
+        <input type="email" placeholder="example@mail.com" required>
+
+        <label>主旨</label>
+        <input type="text" placeholder="聯絡主題..." required>
+
+        <label>訊息內容</label>
+        <textarea rows="6" placeholder="請在此輸入訊息..." required></textarea>
+
+        <button type="submit">送出訊息</button>
+    </form>
 </section>
 
 
@@ -72,55 +83,6 @@
 
 </footer>
 
-
-
-
-<script>
-    const leaf = document.getElementById("leaf");
-    const scoreText = document.getElementById("score");
-    const timeText = document.getElementById("time");
-
-    let score = 0;
-    let timeLeft = 30;
-    let gameStarted = false;
-
-    function moveLeaf() {
-        const container = document.querySelector(".game-container");
-        const maxX = container.clientWidth - 60;
-        const maxY = container.clientHeight - 60;
-
-        const x = Math.random() * maxX;
-        const y = Math.random() * maxY;
-
-        leaf.style.left = x + "px";
-        leaf.style.top = y + "px";
-    }
-
-    leaf.addEventListener("click", () => {
-        if (!gameStarted) return;
-        score++;
-        scoreText.textContent = score;
-        moveLeaf();
-    });
-
-    function startGame() {
-        gameStarted = true;
-
-        const timer = setInterval(() => {
-            timeLeft--;
-            timeText.textContent = timeLeft;
-
-            if (timeLeft <= 0) {
-                clearInterval(timer);
-                gameStarted = false;
-                alert("時間到！你的得分是：" + score + " 🌿");
-            }
-        }, 1000);
-    }
-
-    moveLeaf();
-    startGame();
-</script>
 
 </body>
 </html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Greenerx 智能評估 | 啟動建築數據分析</title>
+    <meta name="description" content="立即輸入專案參數，Greenerx AI 系統將為您運算結構減重與碳排潛力分析。">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Inter:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        mono: ['JetBrains Mono', 'monospace'], // For technical data look
+                    },
+                    colors: {
+                        // New Palette: Concrete Greys & Electric Volt
+                        concrete: {
+                            50: '#f8fafc',
+                            100: '#f1f5f9',
+                            200: '#e2e8f0',
+                            300: '#cbd5e1',
+                            400: '#94a3b8',
+                            500: '#64748b',
+                            600: '#475569',
+                            700: '#334155',
+                            800: '#1e293b',
+                            900: '#0f172a', // Main dark bg
+                            950: '#020617', // Deeper dark
+                        },
+                        volt: {
+                            400: '#a3e635', // Main accent (Lime)
+                            500: '#84cc16',
+                        }
+                    },
+                    boxShadow: {
+                        'glow-volt': '0 0 20px -5px rgba(163, 230, 53, 0.5)',
+                    },
+                    backgroundImage: {
+                        'grid-pattern': "url(\"data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0 0h40v40H0V0zm1 1h38v38H1V1z' fill='%23a3e635' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E\")",
+                        'scan-line': 'linear-gradient(to bottom, transparent, rgba(163, 230, 53, 0.2) 50%, transparent)',
+                    },
+                    animation: {
+                        'scan': 'scan 2s cubic-bezier(0.4, 0.0, 0.2, 1) forwards',
+                        'pulse-volt': 'pulse-volt 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        scan: {
+                            '0%': { transform: 'translateY(-100%)', opacity: 0 },
+                            '50%': { opacity: 1 },
+                            '100%': { transform: 'translateY(100%)', opacity: 0 },
+                        },
+                         'pulse-volt': {
+                            '0%, 100%': { opacity: 1 },
+                            '50%': { opacity: .5 },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0f172a; /* Concrete 900 */
+            color: #e2e8f0;
+        }
+
+        /* --- 1. New Animation: Scanline Reveal --- */
+        /* The container that is initially hidden */
+        .scan-reveal {
+            opacity: 0;
+            /* Subtle glitch text effect initially */
+            text-shadow: 2px 0 rgba(163, 230, 53, 0.3), -2px 0 rgba(163, 230, 53, 0.3);
+            transform: translateY(20px);
+            transition: opacity 0.6s ease, transform 0.6s ease, text-shadow 0.6s ease;
+        }
+        /* The active state after the scan */
+        .scan-reveal.in-view {
+            opacity: 1;
+            transform: translateY(0);
+            text-shadow: 0 0 transparent;
+        }
+        /* Stagger delays */
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
+
+        /* --- 2. New Interaction: Digital Focus Brackets (Input Fields) --- */
+        .input-group-tech {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+
+        /* The actual input */
+        .input-field-tech {
+            width: 100%;
+            background: rgba(30, 41, 59, 0.5); /* Concrete 800 transparent */
+            border: 1px solid rgba(163, 230, 53, 0.1); /* Volt border */
+            padding: 1rem;
+            color: white;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+
+        /* Corner Brackets using pseudo elements on the container */
+        .input-group-tech::before,
+        .input-group-tech::after,
+        .input-group-tech .brackets::before,
+        .input-group-tech .brackets::after {
+            content: '';
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            border-color: #a3e635; /* Volt color */
+            border-style: solid;
+            border-width: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        /* Top Left */
+        .input-group-tech::before { top: -2px; left: -2px; border-top-width: 2px; border-left-width: 2px; }
+        /* Top Right */
+        .input-group-tech::after { top: -2px; right: -2px; border-top-width: 2px; border-right-width: 2px; }
+        /* Bottom Left */
+        .input-group-tech .brackets::before { bottom: -2px; left: -2px; border-bottom-width: 2px; border-left-width: 2px; }
+        /* Bottom Right */
+        .input-group-tech .brackets::after { bottom: -2px; right: -2px; border-bottom-width: 2px; border-right-width: 2px; }
+
+        /* Active State on Focus */
+        .input-group-tech:focus-within .input-field-tech {
+            background: rgba(163, 230, 53, 0.05);
+            border-color: transparent; /* Hide actual border, use brackets */
+        }
+        .input-group-tech:focus-within::before,
+        .input-group-tech:focus-within::after,
+        .input-group-tech:focus-within .brackets::before,
+        .input-group-tech:focus-within .brackets::after {
+            opacity: 1;
+            width: 15px; /* Expand slightly */
+            height: 15px;
+        }
+
+        /* Floating Label */
+        .input-label-tech {
+            position: absolute;
+            left: 1rem;
+            top: 1rem;
+            color: #64748b; /* Concrete 500 */
+            pointer-events: none;
+            transition: all 0.3s;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+        }
+        .input-field-tech:focus ~ .input-label-tech,
+        .input-field-tech:not(:placeholder-shown) ~ .input-label-tech {
+            top: -0.7rem;
+            left: 0;
+            font-size: 0.75rem;
+            color: #a3e635;
+            font-family: 'JetBrains Mono', monospace;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+
+        /* --- 3. Tech Button with Digital Scan Pass --- */
+        .btn-tech {
+            position: relative;
+            background: #a3e635;
+            color: #0f172a;
+            overflow: hidden;
+            /* Tech border style */
+            clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);
+        }
+        .btn-tech::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.8), transparent);
+            transition: left 0.5s ease-in-out;
+        }
+        .btn-tech:hover::before {
+            left: 100%;
+        }
+
+        /* Data Loading Spinner */
+        .spinner-tech {
+            width: 20px;
+            height: 20px;
+            border: 2px solid #0f172a;
+            border-top-color: transparent;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body class="selection:bg-volt-400 selection:text-concrete-900 bg-concrete-900">
+
+    <nav class="fixed w-full z-50 bg-concrete-900/90 backdrop-blur-md border-b border-concrete-800/50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <div class="flex items-center gap-3 cursor-pointer group" onclick="window.location.href='index.html'">
+                    <div class="w-8 h-8 bg-volt-400 flex items-center justify-center text-concrete-900 font-black font-mono shadow-glow-volt transition-transform group-hover:rotate-90">G]</div>
+                    <span class="font-bold text-lg tracking-tight text-white group-hover:text-volt-400 transition-colors font-mono">greenerx_SYS</span>
+                </div>
+                <div class="flex items-center gap-4">
+                     <div class="flex items-center gap-2 px-3 py-1 bg-concrete-800 rounded-sm border border-volt-400/30">
+                         <span class="w-2 h-2 bg-volt-400 rounded-full animate-pulse-volt"></span>
+                         <span class="text-xs text-volt-400 font-mono">SYSTEM ONLINE</span>
+                     </div>
+                     <a href="#" class="text-sm text-concrete-400 hover:text-volt-400 transition"><i class="fas fa-times"></i> ESC</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="min-h-screen pt-16 flex flex-col md:flex-row relative">
+        
+        <div class="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none"></div>
+
+        <div class="w-full md:w-5/12 lg:w-1/2 p-8 md:p-16 flex flex-col justify-center relative z-10 bg-concrete-900/80 backdrop-blur-sm border-r border-concrete-800/50">
+            
+            <div class="mb-12">
+                <div class="scan-reveal">
+                    <span class="text-volt-400 font-mono text-xs uppercase mb-2 block">// INITIALIZING_ASSESSMENT_PROTOCOL</span>
+                </div>
+                <h1 class="scan-reveal delay-1 text-4xl md:text-5xl font-black text-white leading-tight mb-6 font-sans">
+                    數據化您的<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-white to-volt-400">減碳與安全潛力</span>
+                </h1>
+                <p class="scan-reveal delay-2 text-concrete-400 text-lg leading-relaxed mb-8 font-light">
+                    輸入專案參數，AI 核心將執行結構優化模擬。這不是報價單，而是建築體質的數位分身分析。
+                </p>
+            </div>
+
+            <div class="space-y-4 font-mono text-sm">
+                <div class="scan-reveal delay-3 p-4 bg-concrete-800/50 border-l-2 border-volt-400 flex items-start gap-4">
+                    <i class="fas fa-terminal mt-1 text-volt-400"></i>
+                    <div>
+                        <strong class="text-white block mb-1">> 結構靜載重分析 (DEAD_LOAD)</strong>
+                        <p class="text-concrete-400">計算系統重構後的噸數節省數據。</p>
+                    </div>
+                </div>
+                <div class="scan-reveal delay-4 p-4 bg-concrete-800/50 border-l-2 border-volt-400 flex items-start gap-4">
+                    <i class="fas fa-terminal mt-1 text-volt-400"></i>
+                    <div>
+                        <strong class="text-white block mb-1">> 碳足跡追蹤 (CARBON_TRACE)</strong>
+                        <p class="text-concrete-400">對比 EPD 數據的環境影響評估。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-auto pt-8 text-xs text-concrete-600 font-mono scan-reveal delay-4">
+                [SECURE CONNECTION ESTABLISHED. DATA ENCRYPTED.]
+            </div>
+        </div>
+
+        <div class="w-full md:w-7/12 lg:w-1/2 bg-concrete-950 p-8 md:p-16 flex flex-col justify-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-scan-line animate-scan pointer-events-none opacity-50"></div>
+
+            <div class="relative z-10 max-w-md mx-auto w-full">
+                <div class="mb-8 flex items-center justify-between border-b border-concrete-800 pb-4">
+                    <h2 class="text-xl font-bold text-white font-mono">
+                        <i class="fas fa-database mr-2 text-volt-400"></i>專案參數輸入
+                    </h2>
+                    <div class="text-concrete-500 text-xs font-mono">STEP 1/2</div>
+                </div>
+
+                <form id="assessForm" onsubmit="handleSubmit(event)">
+                    
+                    <div class="input-group-tech">
+                        <select id="projectType" class="input-field-tech appearance-none cursor-pointer text-volt-400" required placeholder=" ">
+                            <option value="" disabled selected></option>
+                            <option value="residential">TYPE_A: 高層住宅 (Residential)</option>
+                            <option value="commercial">TYPE_B: 商業辦公 (Commercial)</option>
+                            <option value="public">TYPE_C: 公共工程 (Public Infra)</option>
+                        </select>
+                        <label for="projectType" class="input-label-tech">專案類型</label>
+                        <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-volt-400 text-xs">
+                            [▼]
+                        </div>
+                        <div class="brackets"></div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="input-group-tech">
+                            <input type="number" id="floors" class="input-field-tech" placeholder=" " min="1" required>
+                            <label for="floors" class="input-label-tech">預計樓層數</label>
+                            <div class="brackets"></div>
+                        </div>
+                        <div class="input-group-tech">
+                            <input type="number" id="area" class="input-field-tech" placeholder=" " min="1">
+                            <label for="area" class="input-label-tech">總坪數 (約)</label>
+                            <div class="brackets"></div>
+                        </div>
+                    </div>
+
+                    <div class="h-px w-full bg-concrete-800/80 my-8"></div>
+
+                    <div class="mb-6">
+                        <h2 class="text-sm font-bold text-white mb-4 font-mono">> 接收端資訊設定 (REPORT_DESTINATION)</h2>
+                    </div>
+
+                    <div class="input-group-tech">
+                        <input type="text" id="name" class="input-field-tech" placeholder=" " required>
+                        <label for="name" class="input-label-tech">您的稱呼 / 代號</label>
+                        <div class="brackets"></div>
+                    </div>
+                    
+                    <div class="input-group-tech">
+                        <input type="email" id="email" class="input-field-tech" placeholder=" " required>
+                        <label for="email" class="input-label-tech">電子郵件地址</label>
+                        <div class="brackets"></div>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="btn-tech w-full py-4 font-bold text-lg shadow-glow-volt transition-all transform hover:scale-[1.02] flex items-center justify-center gap-3 mt-8 font-mono group">
+                        <span class="spinner-tech" id="loadingSpinner"></span>
+                        <span id="btnText">執行運算 [EXECUTE]</span>
+                        <i class="fas fa-chevron-right group-hover:translate-x-1 transition-transform" id="btnIcon"></i>
+                    </button>
+                </form>
+
+                <div id="successMessage" class="hidden text-center py-10 font-mono">
+                    <div class="w-24 h-24 bg-concrete-900 border-2 border-volt-400 rounded-full flex items-center justify-center text-5xl mx-auto mb-8 text-volt-400 shadow-glow-volt relative">
+                        <i class="fas fa-check"></i>
+                         <div class="absolute w-full h-full animate-spin" style="animation-duration: 3s;">
+                            <div class="w-3 h-3 bg-volt-400 rounded-full absolute -top-1.5 left-1/2 -translate-x-1/2 box-shadow-glow-volt"></div>
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">數據傳輸完成</h3>
+                    <p class="text-concrete-400 mb-8 max-w-xs mx-auto">AI 核心正在處理您的參數。初步分析報告將發送至您的終端。</p>
+                    <button onclick="window.location.reload()" class="px-6 py-2 border border-concrete-700 hover:border-volt-400 text-concrete-300 hover:text-volt-400 transition text-sm">
+                        < 返回首頁
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // --- 1. Scanline Reveal Trigger ---
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.scan-reveal').forEach(el => observer.observe(el));
+
+
+        // --- 2. Form Handling Simulation (Tech Style) ---
+        function handleSubmit(e) {
+            e.preventDefault();
+            
+            const btn = document.getElementById('submitBtn');
+            const spinner = document.getElementById('loadingSpinner');
+            const btnText = document.getElementById('btnText');
+            const btnIcon = document.getElementById('btnIcon');
+            const form = document.getElementById('assessForm');
+            const successMsg = document.getElementById('successMessage');
+
+            // Simulate loading state
+            btn.disabled = true;
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+            spinner.style.display = 'inline-block';
+            btnIcon.style.display = 'none';
+            btnText.innerText = '處理中 [PROCESSING...]';
+
+            // Simulate API delay
+            setTimeout(() => {
+                form.style.display = 'none';
+                successMsg.classList.remove('hidden');
+                // Scroll to top on mobile to see message
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            }, 2500);
+        }
+    </script>
+</body>
+</html>

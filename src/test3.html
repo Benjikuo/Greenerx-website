@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>看不見的管道，決定看得見的未來 | 建築減碳與安全解決方案</title>
+    <meta name="description" content="建築的碳排與安全，在完工前就已鎖死。了解如何透過優化管道系統，減少100噸建築重量，提升耐震安全並符合EPD與ESG規範。">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&display=swap" rel="stylesheet">
+
+    <style>
+        body { font-family: 'Noto Sans TC', sans-serif; background-color: #0f172a; color: #e2e8f0; overflow-x: hidden; }
+        
+        /* 模擬血管流動的背景動畫 */
+        .vein-bg {
+            background: linear-gradient(120deg, #0f172a, #1e293b, #0f172a);
+            background-size: 200% 200%;
+            animation: flow 10s ease infinite;
+        }
+        @keyframes flow { 0% {background-position: 0% 50%} 50% {background-position: 100% 50%} 100% {background-position: 0% 50%} }
+
+        /* 滾動視差文字特效 */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* 霓虹光暈文字 */
+        .glow-text {
+            text-shadow: 0 0 10px rgba(56, 189, 248, 0.5);
+        }
+        
+        /* 卡片懸停特效 */
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px -10px rgba(56, 189, 248, 0.3);
+            border-color: #38bdf8;
+        }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": "建築的碳排與安全，在管道選擇時就已決定",
+      "description": "探討傳統建築管道系統帶來的隱形成本，以及透過輕量化管道減少100噸建築重量、降低職災與符合ESG的解決方案。",
+      "author": {
+        "@type": "Organization",
+        "name": "建築永續系統專家"
+      },
+      "mainEntity": {
+        "@type": "FAQPage",
+        "mainEntity": [{
+          "@type": "Question",
+          "name": "為什麼建築管道系統很重要？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "管道如同建築的血管。傳統管道重量過重增加結構負擔與職災風險，且材質選擇直接鎖定了建築未來50年的碳排量。"
+          }
+        }, {
+          "@type": "Question",
+          "name": "更換管道系統可以減少多少碳排？",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "根據實際案例，單一高層建築優化管道系統後，可減少超過100噸的管道重量，大幅降低結構負擔與隱含碳排。"
+          }
+        }]
+      }
+    }
+    </script>
+</head>
+<body class="vein-bg">
+
+    <nav class="fixed w-full z-50 bg-slate-900/90 backdrop-blur-md border-b border-slate-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                <span class="text-xl font-bold text-sky-400">SustainablePipe.</span>
+                <div class="hidden md:block">
+                    <a href="#impact" class="text-gray-300 hover:text-white px-3 py-2">影響力</a>
+                    <a href="#solution" class="text-gray-300 hover:text-white px-3 py-2">解決方案</a>
+                    <a href="#contact" class="bg-sky-600 hover:bg-sky-500 text-white px-4 py-2 rounded-full transition">開始計算</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative h-screen flex items-center justify-center text-center px-4">
+        <div class="z-10 max-w-4xl">
+            <h1 class="text-4xl md:text-6xl font-black mb-6 leading-tight tracking-tight reveal active">
+                建築的碳排與安全，<br>
+                其實在<span class="text-sky-400 glow-text">你看不見的地方</span><br>
+                就已經「鎖死」。
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 mb-10 reveal active" style="transition-delay: 0.2s;">
+                不只是省電。真正的隱形危機，藏在牆內的「血管」裡。
+            </p>
+            <div class="reveal active" style="transition-delay: 0.4s;">
+                <a href="#hook" class="inline-block border border-sky-400 text-sky-400 hover:bg-sky-400 hover:text-slate-900 px-8 py-3 rounded-full text-lg font-semibold transition duration-300">
+                    揭開真相 ↓
+                </a>
+            </div>
+        </div>
+        <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2070&auto=format&fit=crop')] bg-cover bg-center opacity-10 mix-blend-overlay"></div>
+    </header>
+
+    <section id="hook" class="py-20 px-4 max-w-5xl mx-auto">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="reveal">
+                <h2 class="text-3xl font-bold mb-6 text-sky-300">被忽略的「鎖定效應」</h2>
+                <p class="text-lg text-slate-300 mb-4">
+                    多數人談建築減碳，只關心用電、空調或太陽能。
+                    但在完工的那一刻，建築材料已經決定了未來 50 年的命運。
+                </p>
+                <p class="text-lg text-slate-300 border-l-4 border-sky-500 pl-4">
+                    <strong>管道，是建築的血管，卻長期被低估。</strong><br>
+                    一旦選錯，就是結構風險、維修惡夢與無法回頭的高碳排。
+                </p>
+            </div>
+            <div class="relative h-64 md:h-96 bg-slate-800 rounded-lg overflow-hidden reveal border border-slate-700 flex items-center justify-center">
+                <div class="text-center p-6">
+                    <div class="text-6xl mb-4">🏢</div>
+                    <p class="text-sm text-slate-400">看不見的管道系統 = 建築核心血管</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-800/50">
+        <div class="max-w-6xl mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-16 reveal">傳統管道正在製造<span class="text-red-400">三個隱形成本</span></h2>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-slate-900 p-8 rounded-xl border border-slate-700 card-hover transition duration-300 reveal">
+                    <div class="text-4xl mb-4">⚠️</div>
+                    <h3 class="text-xl font-bold text-white mb-3">01 公共安全成本</h3>
+                    <p class="text-slate-400">
+                        台灣營造業職災佔比最高。<br>
+                        <strong>過重管道 = 更高吊裝風險。</strong><br>
+                        墜落、倒塌、重物搬運，每一個意外都是沈重的代價。
+                    </p>
+                </div>
+
+                <div class="bg-slate-900 p-8 rounded-xl border border-slate-700 card-hover transition duration-300 reveal" style="transition-delay: 0.1s;">
+                    <div class="text-4xl mb-4">🏚️</div>
+                    <h3 class="text-xl font-bold text-white mb-3">02 結構與維護成本</h3>
+                    <p class="text-slate-400">
+                        CIP 鑄鐵管重量驚人，增加結構死重。<br>
+                        PVC 易脆，接頭多。<br>
+                        <strong>上千個接頭 = 上千個漏水炸彈</strong>，維修成本難以估計。
+                    </p>
+                </div>
+
+                <div class="bg-slate-900 p-8 rounded-xl border border-slate-700 card-hover transition duration-300 reveal" style="transition-delay: 0.2s;">
+                    <div class="text-4xl mb-4">🌍</div>
+                    <h3 class="text-xl font-bold text-white mb-3">03 碳排與永續成本</h3>
+                    <p class="text-slate-400">
+                        傳統管材製造與運輸碳排極高。<br>
+                        無法回收或燃燒產生有毒物質。<br>
+                        <strong>一開始選錯，就無法回頭補救。</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="py-24 px-4 max-w-5xl mx-auto text-center">
+        <h2 class="text-3xl md:text-5xl font-bold mb-4 reveal">這不是理念，而是<br><span class="text-sky-400">可以量化的結果</span></h2>
+        <p class="text-xl text-slate-400 mb-12 reveal">實際案例顯示，單一高層建築優化後：</p>
+
+        <div class="grid md:grid-cols-2 gap-12">
+            <div class="bg-gradient-to-br from-sky-900 to-slate-900 p-10 rounded-2xl reveal border border-sky-700">
+                <p class="text-slate-300 mb-2">減少管道重量</p>
+                <div class="text-6xl font-black text-white mb-2 flex justify-center items-baseline">
+                    <span class="text-sky-400 mr-2">-</span>
+                    <span id="counter-weight">0</span>
+                    <span class="text-2xl ml-2 text-slate-400">噸</span>
+                </div>
+                <p class="text-sm text-slate-400">大幅降低結構負擔與碳排</p>
+            </div>
+
+            <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-10 rounded-2xl reveal border border-slate-700">
+                <p class="text-slate-300 mb-2">潛在漏水點</p>
+                <div class="text-6xl font-black text-white mb-2">
+                    <span class="text-emerald-400">0</span>
+                </div>
+                <p class="text-sm text-slate-400">透過系統化設計，消除傳統接頭風險</p>
+            </div>
+        </div>
+
+        <div class="mt-12 p-6 border border-yellow-600/50 bg-yellow-900/20 rounded-lg inline-block reveal">
+            <p class="font-bold text-yellow-500 text-lg">
+                減重 = 耐震 = 安全 = 減碳 = 永續
+            </p>
+        </div>
+    </section>
+
+    <section class="py-20 bg-slate-900">
+        <div class="max-w-4xl mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-8 reveal">為什麼現在一定要正視？</h2>
+            <div class="flex flex-wrap justify-center gap-4 mb-8 reveal">
+                <span class="px-4 py-2 bg-slate-800 border border-slate-600 rounded-full text-sm">EPD 國際認證</span>
+                <span class="px-4 py-2 bg-slate-800 border border-slate-600 rounded-full text-sm">ESG 企業指標</span>
+                <span class="px-4 py-2 bg-slate-800 border border-slate-600 rounded-full text-sm">Net Zero 淨零路徑</span>
+            </div>
+            <p class="text-lg text-slate-300 mb-8 reveal">
+                ESG 與綠建築不再只是加分，而是建商融資與銷售的<strong>「資格題」</strong>。<br>
+                材料沒有數據，就很難被採用。
+            </p>
+        </div>
+    </section>
+
+    <section id="contact" class="py-24 px-4 bg-gradient-to-b from-slate-900 to-sky-900/20">
+        <div class="max-w-3xl mx-auto text-center reveal">
+            <h2 class="text-4xl font-bold mb-6">從「知道」到「做到」</h2>
+            <p class="text-xl text-slate-300 mb-10">
+                別讓錯誤的材料鎖死你的建築價值。<br>
+                我們可以幫你把「建築規模」轉化為精確的「減碳數據」。
+            </p>
+            
+            <div class="flex flex-col md:flex-row gap-6 justify-center">
+                <button onclick="alert('開啟計算機模組 (示範功能)')" class="bg-sky-500 hover:bg-sky-400 text-white text-lg font-bold py-4 px-8 rounded-lg shadow-lg shadow-sky-500/30 transition transform hover:scale-105">
+                    🧮 計算你的建築減重潛力
+                </button>
+                <button onclick="alert('跳轉至案例頁面 (示範功能)')" class="bg-transparent border-2 border-slate-400 hover:border-white text-slate-300 hover:text-white text-lg font-bold py-4 px-8 rounded-lg transition">
+                    🏆 觀看真實減碳案例
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-950 py-12 border-t border-slate-800 text-slate-500 text-center">
+        <p>&copy; 2025 Sustainable Building Solutions. All rights reserved.</p>
+        <p class="text-sm mt-2">致力於讓看不見的管道，成為看得見的永續力量。</p>
+    </footer>
+
+    <script>
+        // Scroll Reveal Animation (滾動顯現)
+        const revealElements = document.querySelectorAll('.reveal');
+        
+        const revealOnScroll = () => {
+            const windowHeight = window.innerHeight;
+            const elementVisible = 150;
+
+            revealElements.forEach((reveal) => {
+                const elementTop = reveal.getBoundingClientRect().top;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveal.classList.add('active');
+                    
+                    // Trigger Counter Animation if visible
+                    if(reveal.contains(document.getElementById('counter-weight'))) {
+                        animateValue("counter-weight", 0, 100, 2000);
+                    }
+                }
+            });
+        };
+
+        window.addEventListener('scroll', revealOnScroll);
+
+        // Number Counter Animation (數字跳動)
+        let hasAnimated = false;
+        function animateValue(id, start, end, duration) {
+            if (hasAnimated) return;
+            const obj = document.getElementById(id);
+            if (!obj) return;
+            
+            hasAnimated = true;
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                obj.innerHTML = Math.floor(progress * (end - start) + start);
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+    </script>
+</body>
+</html>
