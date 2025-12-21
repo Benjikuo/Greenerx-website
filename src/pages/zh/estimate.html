@@ -1,88 +1,407 @@
 <!DOCTYPE html>
-<html lang="zh-Hant" translate="no">
-
+<html lang="zh-TW" class="scroll-smooth dark">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GreenerX - Contact Us</title>
-    <link rel="stylesheet" href="../assets/css/style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Greenerx 立即評估 | 啟動建築體質檢測</title>
+    <meta name="description" content="立即輸入專案參數，取得 Greenerx 針對您的建築專案所做的結構減重與碳排潛力預估報告。">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;700;800&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Manrope', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        copper: {
+                            50: '#fdf8f1',
+                            100: '#fcefdc',
+                            200: '#f8dcb8',
+                            300: '#f3c389',
+                            400: '#eda258',
+                            500: '#e68a32',
+                            600: '#d67324',
+                            700: '#c2780a', 
+                            800: '#934b14',
+                            900: '#773d13',
+                        },
+                        slate: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                            950: '#0B1120', 
+                        }
+                    },
+                    boxShadow: {
+                        'glow-copper': '0 0 20px rgba(194, 120, 10, 0.4)',
+                        'inner-glow': 'inset 0 0 10px rgba(194, 120, 10, 0.1)',
+                    },
+                    backgroundImage: {
+                        'metallic-gradient': 'linear-gradient(135deg, #c2780a 0%, #e68a32 50%, #c2780a 100%)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0B1120;
+            color: #e2e8f0;
+        }
+
+        /* --- 1. Mask Reveal Animation (Reusable) --- */
+        .reveal-mask {
+            position: relative;
+            display: inline-block;
+            overflow: hidden;
+        }
+        .reveal-mask > * {
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.5s ease 0.3s, transform 0.5s ease 0.3s;
+        }
+        .reveal-mask::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, #c2780a, #e68a32);
+            z-index: 10;
+            transform: translateX(-101%);
+            transition: transform 0.8s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        .reveal-mask.in-view::after {
+            transform: translateX(101%);
+        }
+        .reveal-mask.in-view > * {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- 2. Input Field Styles --- */
+        .input-group {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        .input-field {
+            width: 100%;
+            background: rgba(15, 23, 42, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 1rem 1rem 1rem 3rem; /* Left padding for icon */
+            color: white;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            outline: none;
+        }
+        .input-field:focus {
+            border-color: #e68a32;
+            box-shadow: 0 0 15px rgba(230, 138, 50, 0.2);
+            background: rgba(15, 23, 42, 0.9);
+        }
+        .input-icon {
+            position: absolute;
+            left: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #64748b;
+            transition: color 0.3s;
+        }
+        .input-field:focus + .input-icon,
+        .input-field:not(:placeholder-shown) + .input-icon {
+            color: #e68a32;
+        }
+        .input-label {
+            position: absolute;
+            left: 3rem;
+            top: 1rem;
+            color: #94a3b8;
+            pointer-events: none;
+            transition: all 0.3s;
+            font-size: 0.95rem;
+        }
+        .input-field:focus ~ .input-label,
+        .input-field:not(:placeholder-shown) ~ .input-label {
+            top: -0.6rem;
+            left: 0.8rem;
+            font-size: 0.75rem;
+            color: #e68a32;
+            background-color: #0B1120;
+            padding: 0 0.4rem;
+        }
+
+        /* --- 3. Metallic Button --- */
+        .btn-metallic {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #c2780a 0%, #e68a32 50%, #c2780a 100%);
+        }
+        .btn-metallic::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(to bottom right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(45deg) translateY(-100%);
+            transition: transform 0.6s;
+        }
+        .btn-metallic:hover::after {
+            transform: rotate(45deg) translateY(100%);
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top: 3px solid white;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: none;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    </style>
 </head>
+<body class="selection:bg-copper-700 selection:text-white">
 
-<body>
-
-<header class="navbar">
-    <a href="../index.html" class="logo-link gradient-logo">Greener X</a>
-
-    <nav class="menu">
-        <a href="../index.html">Home</a>
-        <a href="../pages/case.html">Case</a>
-        <a href="../pages/calculator.html">Calculator</a>
-        <a href="../pages/about.html">About</a>
-        <a href="../pages/contact.html">Contact</a>
-        <a href="../pages/game.html">Game</a>
+    <nav class="fixed w-full z-50 bg-slate-950/90 backdrop-blur-md border-b border-white/5">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2 cursor-pointer group" onclick="window.location.href='index.html'">
+                    <div class="w-8 h-8 bg-metallic-gradient rounded-sm flex items-center justify-center text-slate-950 font-black shadow-lg">G</div>
+                    <span class="font-bold text-lg tracking-tight text-white group-hover:text-copper-400 transition-colors">greenerx</span>
+                </div>
+                <div class="flex items-center gap-4">
+                     <span class="text-xs text-slate-500 hidden sm:block">AI 輔助評估系統 V2.0</span>
+                     <a href="#" class="text-sm font-bold text-slate-300 hover:text-white transition"><i class="fas fa-times"></i></a>
+                </div>
+            </div>
+        </div>
     </nav>
 
-    <div class="actions">
-        <div id="lang-switch">🌐</div>
-        <div id="theme-toggle">🌙</div>
-    </div>
-</header>
+    <div class="min-h-screen pt-20 flex flex-col md:flex-row relative">
+        
+        <div class="absolute inset-0 opacity-[0.03] pointer-events-none" style="background-image: linear-gradient(rgba(194, 120, 10, 0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(194, 120, 10, 0.5) 1px, transparent 1px); background-size: 40px 40px;"></div>
 
+        <div class="w-full md:w-5/12 lg:w-1/2 p-8 md:p-16 flex flex-col justify-center relative z-10 bg-slate-950/50 backdrop-blur-sm">
+            
+            <div class="mb-8">
+                <div class="reveal-mask">
+                    <span class="text-copper-400 font-bold tracking-widest text-sm uppercase mb-2 block">Project Assessment</span>
+                </div>
+                <div class="reveal-mask">
+                    <h1 class="text-4xl md:text-5xl font-black text-white leading-tight mb-6">
+                        數據化您的<br>
+                        <span class="text-transparent bg-clip-text bg-metallic-gradient">減碳與安全潛力</span>
+                    </h1>
+                </div>
+                <div class="reveal-mask">
+                    <p class="text-slate-400 text-lg leading-relaxed mb-8">
+                        這不只是一份報價單，而是一份完整的建築體質分析報告。只需 2 分鐘，即可獲得針對您專案的結構優化預估。
+                    </p>
+                </div>
+            </div>
 
-<section class="contact-hero">
-    <h1>聯絡我們</h1>
-    <p>如您有任何永續相關問題、合作機會、或希望進行碳足跡評估，歡迎填寫下方表單。</p>
-</section>
+            <div class="space-y-6">
+                <h3 class="text-white font-bold border-b border-white/10 pb-2 mb-4">評估報告將包含：</h3>
+                
+                <div class="flex items-start gap-4 group p-3 rounded-md transition-colors hover:bg-slate-900/50 border border-transparent hover:border-copper-900/30">
+                    <div class="mt-1 w-8 h-8 rounded-full bg-slate-900 border border-copper-800 flex items-center justify-center text-copper-500 group-hover:bg-copper-700 group-hover:text-white transition-all shadow-glow-copper">
+                        <i class="fas fa-weight-hanging"></i>
+                    </div>
+                    <div>
+                        <strong class="text-slate-200 group-hover:text-white">重量減輕預估</strong>
+                        <p class="text-sm text-slate-500 mt-1">計算可減少的結構靜載重 (Dead Load) 噸數。</p>
+                    </div>
+                </div>
 
+                <div class="flex items-start gap-4 group p-3 rounded-md transition-colors hover:bg-slate-900/50 border border-transparent hover:border-copper-900/30">
+                    <div class="mt-1 w-8 h-8 rounded-full bg-slate-900 border border-copper-800 flex items-center justify-center text-copper-500 group-hover:bg-copper-700 group-hover:text-white transition-all shadow-glow-copper">
+                        <i class="fas fa-leaf"></i>
+                    </div>
+                    <div>
+                        <strong class="text-slate-200 group-hover:text-white">碳足跡分析</strong>
+                        <p class="text-sm text-slate-500 mt-1">對比傳統工法的碳排放差異與 EPD 數據。</p>
+                    </div>
+                </div>
 
-<section class="contact-form-section">
-    <form class="contact-form">
-
-        <label>您的姓名</label>
-        <input type="text" placeholder="請輸入您的名字" required>
-
-        <label>電子郵件</label>
-        <input type="email" placeholder="example@mail.com" required>
-
-        <label>主旨</label>
-        <input type="text" placeholder="聯絡主題..." required>
-
-        <label>訊息內容</label>
-        <textarea rows="6" placeholder="請在此輸入訊息..." required></textarea>
-
-        <button type="submit">送出訊息</button>
-    </form>
-</section>
-
-
-
-<footer class="deep-footer">
-
-    <div class="footer-grid">
-
-        <a href="../index.html" class="footer-logo-link">Greener X</a>
-
-        <div class="footer-text">
-            <p>GreenerX 致力於提供永續發展、碳管理與綠建築解決方案。</p>
-            <p>我們協助企業邁向低碳、創新、永續的未來。</p>
+                <div class="flex items-start gap-4 group p-3 rounded-md transition-colors hover:bg-slate-900/50 border border-transparent hover:border-copper-900/30">
+                    <div class="mt-1 w-8 h-8 rounded-full bg-slate-900 border border-copper-800 flex items-center justify-center text-copper-500 group-hover:bg-copper-700 group-hover:text-white transition-all shadow-glow-copper">
+                        <i class="fas fa-search-dollar"></i>
+                    </div>
+                    <div>
+                        <strong class="text-slate-200 group-hover:text-white">綜合成本效益</strong>
+                        <p class="text-sm text-slate-500 mt-1">包含施工工期縮短與維護成本的長期評估。</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-12 text-xs text-slate-600 font-mono">
+                * Data is encrypted and confidential.
+            </div>
         </div>
 
-        <div class="footer-links">
-            <a href="../index.html">Home</a>
-            <a href="../pages/case.html">Case</a>
-            <a href="../pages/calculator.html">Calculator</a>
-            <a href="../pages/about.html">About</a>
-            <a href="../pages/contact.html">Contact</a>
-            <a href="../pages/game.html">Game</a>
+        <div class="w-full md:w-7/12 lg:w-1/2 bg-slate-900 border-l border-white/5 p-8 md:p-16 flex flex-col justify-center relative overflow-hidden">
+            <div class="absolute -top-20 -right-20 w-96 h-96 bg-copper-600/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="relative z-10 max-w-md mx-auto w-full">
+                <div class="mb-8 flex items-center justify-between">
+                    <h2 class="text-2xl font-bold text-white">專案基本資訊</h2>
+                    <div class="text-copper-500 text-sm font-bold">STEP 1/2</div>
+                </div>
+
+                <form id="assessForm" onsubmit="handleSubmit(event)">
+                    
+                    <div class="input-group">
+                        <select id="projectType" class="input-field appearance-none cursor-pointer" required placeholder=" ">
+                            <option value="" disabled selected></option>
+                            <option value="residential">高層住宅 (Residential)</option>
+                            <option value="commercial">商業辦公 (Commercial)</option>
+                            <option value="public">公共工程 (Public Infra)</option>
+                            <option value="mixed">複合式開發 (Mixed Use)</option>
+                        </select>
+                        <i class="fas fa-building input-icon"></i>
+                        <label for="projectType" class="input-label">專案類型</label>
+                        <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"></i>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4">
+                        <div class="input-group">
+                            <input type="number" id="floors" class="input-field" placeholder=" " min="1" required>
+                            <i class="fas fa-layer-group input-icon"></i>
+                            <label for="floors" class="input-label">預計樓層數</label>
+                        </div>
+                        <div class="input-group">
+                            <input type="number" id="area" class="input-field" placeholder=" " min="1">
+                            <i class="fas fa-ruler-combined input-icon"></i>
+                            <label for="area" class="input-label">總坪數 (約)</label>
+                        </div>
+                    </div>
+
+                    <div class="input-group">
+                         <select id="stage" class="input-field appearance-none cursor-pointer" required placeholder=" ">
+                            <option value="" disabled selected></option>
+                            <option value="planning">規劃設計階段 (Planning)</option>
+                            <option value="permit">建照申請中 (Permitting)</option>
+                            <option value="bidding">發包階段 (Bidding)</option>
+                            <option value="construction">施工中 (Construction)</option>
+                        </select>
+                        <i class="fas fa-clipboard-list input-icon"></i>
+                        <label for="stage" class="input-label">目前階段</label>
+                        <i class="fas fa-chevron-down absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 pointer-events-none"></i>
+                    </div>
+
+                    <div class="h-px w-full bg-white/10 my-6"></div>
+
+                    <div class="mb-4">
+                        <h2 class="text-lg font-bold text-white mb-4">聯絡資訊 (接收報告用)</h2>
+                    </div>
+
+                    <div class="input-group">
+                        <input type="text" id="name" class="input-field" placeholder=" " required>
+                        <i class="fas fa-user input-icon"></i>
+                        <label for="name" class="input-label">您的稱呼</label>
+                    </div>
+                    
+                    <div class="input-group">
+                        <input type="email" id="email" class="input-field" placeholder=" " required>
+                        <i class="fas fa-envelope input-icon"></i>
+                        <label for="email" class="input-label">Email</label>
+                    </div>
+
+                    <button type="submit" id="submitBtn" class="btn-metallic w-full py-4 rounded-sm text-white font-bold text-lg shadow-lg hover:shadow-copper-500/40 transition-all transform hover:-translate-y-1 flex items-center justify-center gap-2 mt-8">
+                        <span class="spinner" id="loadingSpinner"></span>
+                        <span id="btnText">開始運算評估</span>
+                        <i class="fas fa-arrow-right" id="btnIcon"></i>
+                    </button>
+
+                    <p class="text-center text-slate-500 text-xs mt-4">
+                        點擊按鈕即表示您同意我們的隱私權政策。我們將在 24 小時內與您聯繫。
+                    </p>
+                </form>
+
+                <div id="successMessage" class="hidden text-center py-10">
+                    <div class="w-20 h-20 bg-green-500/20 text-green-500 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 border border-green-500/50">
+                        <i class="fas fa-check"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-2">資料已送出</h3>
+                    <p class="text-slate-400 mb-8">系統正在計算您的專案數據，初步報告將寄送至您的信箱。</p>
+                    <button onclick="window.location.reload()" class="text-copper-500 hover:text-white underline underline-offset-4">返回</button>
+                </div>
+            </div>
         </div>
-
-    </div>
-    <div class="footer-copy-bottom">
-        © 2025 GreenerX — Building a Sustainable Future.
     </div>
 
-</footer>
+    <script>
+        // --- 1. Animation Trigger (Same as before) ---
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: "0px"
+        };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('in-view');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.reveal-mask').forEach(el => observer.observe(el));
 
 
+        // --- 2. Form Handling Simulation ---
+        function handleSubmit(e) {
+            e.preventDefault();
+            
+            const btn = document.getElementById('submitBtn');
+            const spinner = document.getElementById('loadingSpinner');
+            const btnText = document.getElementById('btnText');
+            const btnIcon = document.getElementById('btnIcon');
+            const form = document.getElementById('assessForm');
+            const successMsg = document.getElementById('successMessage');
+
+            // Simulate loading state
+            btn.disabled = true;
+            btn.classList.add('opacity-80', 'cursor-not-allowed');
+            spinner.style.display = 'inline-block';
+            btnIcon.style.display = 'none';
+            btnText.innerText = '系統運算中...';
+
+            // Simulate API delay
+            setTimeout(() => {
+                form.style.display = 'none';
+                successMsg.classList.remove('hidden');
+                
+                // Reset button state (though hidden)
+                btn.disabled = false;
+                spinner.style.display = 'none';
+            }, 2000);
+        }
+
+        // --- 3. Dynamic "Spotlight" on Form Container ---
+        // Adds a subtle follow-mouse glow to the right column background
+        const rightCol = document.querySelector('.w-full.md\\:w-7\\/12');
+        if (window.innerWidth > 768) {
+            rightCol.addEventListener('mousemove', (e) => {
+                const rect = rightCol.getBoundingClientRect();
+                const x = e.clientX - rect.left;
+                const y = e.clientY - rect.top;
+                
+                // Using radial gradient on a pseudo element approach via inline style manipulation
+                // or simpler: just stick to the CSS input effects which are cleaner for forms
+            });
+        }
+    </script>
 </body>
 </html>

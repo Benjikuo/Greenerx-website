@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GreenerX | Redirecting...</title>
+    
+    <meta http-equiv="refresh" content="0; url=/zh/" />
+
+    <style>
+        :root {
+            --bg-color: #020617; 
+            --card-bg: #1e293b;
+            
+            --brand-color: #22c55e;
+            --brand-light: #4ade80;
+            --brand-glow: rgba(34, 197, 94, 0.4);
+            
+            --text-main: #ffffff;
+            --text-sub: #94a3b8;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            height: 100vh;
+            width: 100vw;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+        }
+
+        .bg-glow {
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, var(--brand-glow) 0%, transparent 70%);
+            opacity: 0.2;
+            filter: blur(50px);
+            z-index: 0;
+            pointer-events: none;
+            animation: pulse-glow 5s ease-in-out infinite alternate;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            max-width: 400px;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 40px;
+        }
+
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            text-decoration: none;
+
+            color: transparent;
+
+            background-image: linear-gradient(
+                135deg,
+                var(--text-main) 0%,
+                var(--text-main) 35%,
+                #4d99fc 50%,
+                var(--text-main) 65%,
+                var(--text-main) 100%
+            );
+
+            background-size: 300% 100%;
+            background-position: 100% 50%;
+
+            -webkit-background-clip: text;
+            background-clip: text;
+
+            animation: logo-energy-flow 5s ease-in-out infinite;
+        }
+
+
+        .logo-text:hover {
+            background-image: linear-gradient(
+                120deg,
+                var(--brand-light) 25%,
+                #ffffff 45%,
+                var(--brand-light) 65%
+            );
+        }
+
+        .loader-wrapper {
+            position: relative;
+            width: 100px;
+            height: 100px;
+            margin-bottom: 30px;
+        }
+
+        .ring-outer {
+            position: absolute;
+            inset: 0;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-top-color: var(--brand-color);
+            border-right-color: rgba(34, 197, 94, 0.3);
+            animation: spin 1s linear infinite;
+        }
+
+        .ring-inner {
+            position: absolute;
+            inset: 12px;
+            border-radius: 50%;
+            border: 3px solid transparent;
+            border-bottom-color: var(--brand-light);
+            opacity: 0.5;
+            animation: spin 2s linear infinite reverse;
+        }
+
+        .center-logo {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            animation: breathe 1.5s ease-in-out infinite;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            filter: drop-shadow(0 0 6px var(--brand-glow));
+        }
+
+        h1 {
+            font-size: 20px;
+            margin: 0 0 10px 0;
+            font-weight: 600;
+            text-shadow: 0 0 10px var(--brand-glow);
+        }
+
+        p {
+            color: var(--text-sub);
+            font-size: 14px;
+            margin: 0 0 40px 0;
+            line-height: 1.6;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: rgba(30, 41, 59, 0.8);
+            color: #cbd5e1;
+            text-decoration: none;
+            padding: 12px 24px;
+            border-radius: 9999px;
+            border: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn:hover {
+            border-color: var(--brand-color);
+            color: white;
+            box-shadow: 0 0 15px -3px var(--brand-glow);
+            transform: translateY(-2px);
+        }
+        
+        .arrow {
+            display: inline-block;
+            transition: transform 0.3s;
+        }
+        
+        .btn:hover .arrow {
+            transform: translateX(4px);
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 20px;
+            font-family: monospace;
+            font-size: 13px;
+            color: #334155;
+            letter-spacing: 0.1em;
+        }
+        
+        @keyframes logo-energy-flow {
+            0% {
+                background-position: 100% 50%;
+            }
+            100% {
+                background-position: 0% 50%;
+            }
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        @keyframes breathe {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.1); opacity: 0.8; }
+        }
+        @keyframes pulse-glow {
+            from { transform: scale(0.8); opacity: 0.1; }
+            to { transform: scale(1.2); opacity: 0.2; }
+        }
+
+    </style>
+
+    <script>
+        window.location.href = "/zh/";
+    </script>
+</head>
+<body>
+
+    <div class="bg-grid"></div>
+    <div class="bg-glow"></div>
+
+    <div class="container">
+        <div class="logo-area">
+            <a href="/zh/" class="logo-text">Greener X</a>
+        </div>
+
+        <div class="loader-wrapper">
+            <div class="ring-outer"></div>
+            <div class="ring-inner"></div>
+            <div class="center-logo">
+                <img src="assets/img/GreenerX-logo.png" alt="📂" class="logo-img">
+            </div> 
+        </div>
+
+        <h1>正在前往繁體中文版頁面</h1>
+        <p>系統正在為您載入最佳瀏覽體驗。</p>
+
+        <a href="/zh/" class="btn">
+            如果沒有自動跳轉，請點擊這裡 
+            <span class="arrow">➔</span>
+        </a>
+    </div>
+
+    <div class="footer">SYSTEM LOADING...</div>
+
+    <script>
+        setTimeout(() => {
+            window.location.href = "/zh/";
+        }, 5000);
+    </script>
+
+</body>
+</html>

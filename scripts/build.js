@@ -36,7 +36,7 @@ function copyPages(from, to) {
 
     if (path.extname(item) === ".html") {
       if (item === "index.html" || item === "404.html") {
-        fs.copyFileSync(srcPath, path.join(to, "index.html"));
+        fs.copyFileSync(srcPath, path.join(to, item));
       } else {
         const name = path.basename(item, ".html");
         const pageDir = path.join(to, name);
@@ -107,8 +107,7 @@ copyNews(path.join(SRC, "news"), PUBLIC);
 
 console.log(" 4. Copying other directories");
 const DIR_WHITELIST = [
-  "assets",
-  "i18n"
+  "assets"
 ];
 for (const dirName of DIR_WHITELIST) {
   const srcDir = path.join(SRC, dirName);
@@ -125,7 +124,7 @@ const FILE_WHITELIST = [
   "favicon.ico",
   "robots.txt",
   "sitemap.xml",
-  "site.webmanifest"
+  "site.webmanifest",
 ];
 for (const fileName of FILE_WHITELIST) {
   copyFile(

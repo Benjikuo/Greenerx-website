@@ -1,120 +1,315 @@
-<!DOCTYPE html>
-<html lang="zh-Hant" translate="no">
-
+<!doctype html>
+<html lang="zh-Hant">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>GreenerX - Carbon Calculator</title>
-    <link rel="stylesheet" href="../assets/css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>排水管材減碳計算機 | GreenerX</title>
+  <style>
+    :root {
+      --bg-color: #020617;
+      --card-bg: rgba(30, 41, 59, 0.7);
+      --input-bg: rgba(15, 23, 42, 0.6);
+      --brand-color: #22c55e;
+      --brand-glow: rgba(34, 197, 94, 0.4);
+      --text-main: #ffffff;
+      --text-sub: #94a3b8;
+      --border-color: rgba(255, 255, 255, 0.1);
+    }
+
+    body {
+      margin: 0;
+      padding: 40px 20px;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      font-family: system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+    }
+
+    /* 背景特效 */
+    .bg-grid {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .bg-glow {
+      position: absolute;
+      top: -100px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, var(--brand-glow) 0%, transparent 70%);
+      opacity: 0.2;
+      filter: blur(80px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    /* 主容器 */
+    .calculator-container {
+      width: 100%;
+      max-width: 800px;
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border-color);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: 0 0 40px rgba(0, 0, 0, 0.3);
+    }
+
+    h1 {
+      text-align: center;
+      margin-top: 0;
+      margin-bottom: 30px;
+      font-weight: 800;
+      letter-spacing: -1px;
+      background: linear-gradient(to right, #fff, #94a3b8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* 表單佈局 */
+    form {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .form-group.full-width {
+      grid-column: span 2;
+    }
+
+    label {
+      font-size: 14px;
+      color: var(--text-sub);
+      font-weight: 500;
+    }
+
+    /* 輸入框樣式 */
+    input[type="number"],
+    select {
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      color: #fff;
+      padding: 12px 16px;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: all 0.3s ease;
+      outline: none;
+    }
+
+    input[type="number"]:focus,
+    select:focus {
+      border-color: var(--brand-color);
+      box-shadow: 0 0 15px -3px var(--brand-glow);
+    }
+
+    /* 核取方塊自訂樣式 */
+    .checkbox-wrapper {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+      user-select: none;
+      margin-top: 10px;
+    }
+
+    input[type="checkbox"] {
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      background: var(--input-bg);
+      border: 1px solid var(--border-color);
+      border-radius: 4px;
+      position: relative;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    input[type="checkbox"]:checked {
+      background-color: var(--brand-color);
+      border-color: var(--brand-color);
+    }
+
+    input[type="checkbox"]:checked::after {
+      content: '✔';
+      position: absolute;
+      color: #000;
+      font-size: 14px;
+      left: 3px;
+      top: -1px;
+      font-weight: bold;
+    }
+
+    /* 按鈕樣式 */
+    button[type="submit"] {
+      grid-column: span 2;
+      background: var(--brand-color);
+      color: #000;
+      font-weight: bold;
+      padding: 14px;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: all 0.3s;
+      margin-top: 10px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    button[type="submit"]:hover {
+      background: #4ade80;
+      box-shadow: 0 0 20px var(--brand-glow);
+      transform: translateY(-2px);
+    }
+
+    /* 分隔線 */
+    hr {
+      border: 0;
+      height: 1px;
+      background: linear-gradient(to right, transparent, var(--border-color), transparent);
+      margin: 0 0 40px 0;
+    }
+
+    /* 表格樣式 */
+    .table-container {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 15px;
+    }
+
+    th {
+      text-align: left;
+      padding: 16px;
+      color: var(--brand-color);
+      border-bottom: 1px solid var(--border-color);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 1px;
+    }
+
+    td {
+      padding: 16px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-main);
+    }
+
+    /* 讓數字使用等寬字體，看起來更像數據 */
+    td:not(:first-child) {
+      font-family: 'Courier New', Courier, monospace;
+      font-size: 1.1em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background-color: rgba(34, 197, 94, 0.05);
+    }
+
+    /* 手機版適配 */
+    @media (max-width: 600px) {
+      form {
+        grid-template-columns: 1fr;
+      }
+      .form-group.full-width {
+        grid-column: span 1;
+      }
+      button[type="submit"] {
+        grid-column: span 1;
+      }
+      .calculator-container {
+        padding: 24px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header class="navbar">
-    <a href="../index.html" class="logo-link gradient-logo">Greener X</a>
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
 
-    <nav class="menu">
-        <a href="../index.html">Home</a>
-        <a href="../pages/case.html">Case</a>
-        <a href="../pages/calculator.html">Calculator</a>
-        <a href="../pages/about.html">About</a>
-        <a href="../pages/contact.html">Contact</a>
-        <a href="../pages/game.html">Game</a>
-    </nav>
+  <div class="calculator-container">
+    <h1>排水管材減碳計算機</h1>
 
-    <div class="actions">
-        <div id="lang-switch">🌐</div>
-        <div id="theme-toggle">🌙</div>
-    </div>
-</header>
-
-
-<section class="calc-hero">
-    <h1>建築碳排放計算器</h1>
-    <p>輸入材料重量或用量，即可估算碳排放量（kg CO₂e）。</p>
-</section>
-
-
-<section class="calculator-section">
-
-    <div class="calc-card">
-
-        <h2>輸入建材資訊</h2>
-
-        <label>材料種類</label>
-        <select id="material">
-            <option value="hdpe">HDPE（高密度聚乙烯）</option>
-            <option value="pvc">PVC（聚氯乙烯）</option>
-            <option value="steel">不鏽鋼</option>
-            <option value="concrete">混凝土</option>
+    <form id="calc-form">
+      
+      <div class="form-group full-width">
+        <label for="buildingType">建築用途</label>
+        <select id="buildingType">
+          <option value="RESIDENTIAL">住宅 (Residential)</option>
+          <option value="HOTEL">飯店 (Hotel)</option>
+          <option value="OFFICE">辦公 (Office)</option>
         </select>
+      </div>
 
-        <label>材料重量（kg）</label>
-        <input type="number" id="weight" placeholder="輸入重量…" />
+      <div class="form-group">
+        <label for="units">戶數</label>
+        <input id="units" type="number" value="120" placeholder="輸入戶數">
+      </div>
 
-        <button id="calc-btn">計算碳排放</button>
+      <div class="form-group">
+        <label for="floors">樓層數</label>
+        <input id="floors" type="number" value="15" placeholder="輸入樓層">
+      </div>
 
-        <div class="calc-result" id="result-box">
-            <p>碳排放量：<span id="result">--</span> kg CO₂e</p>
-        </div>
+      <div class="form-group full-width">
+        <label class="checkbox-wrapper">
+          <input id="basement" type="checkbox">
+          <span>含地下室結構</span>
+        </label>
+      </div>
 
+      <button type="submit">開始計算 (Calculate)</button>
+    </form>
+
+    <hr>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>管材類型</th>
+            <th>重量 (kg)</th>
+            <th>總碳排 (kg CO₂e)</th>
+          </tr>
+        </thead>
+        <tbody id="result-body">
+          <tr>
+            <td colspan="3" style="text-align: center; color: var(--text-sub); padding: 30px;">
+              等待輸入資料...
+            </td>
+          </tr>
+        </tbody>
+      </table>
     </div>
+  </div>
 
-</section>
-
-
-
-<footer class="deep-footer">
-
-    <div class="footer-grid">
-
-        <a href="../index.html" class="footer-logo-link">Greener X</a>
-
-        <div class="footer-text">
-            <p>GreenerX 致力於提供永續發展、碳管理與綠建築解決方案。</p>
-            <p>我們協助企業邁向低碳、創新、永續的未來。</p>
-        </div>
-
-        <div class="footer-links">
-            <a href="../index.html">Home</a>
-            <a href="../pages/case.html">Case</a>
-            <a href="../pages/calculator.html">Calculator</a>
-            <a href="../pages/about.html">About</a>
-            <a href="../pages/contact.html">Contact</a>
-            <a href="../pages/game.html">Game</a>
-        </div>
-
-    </div>
-    <div class="footer-copy-bottom">
-        © 2025 GreenerX — Building a Sustainable Future.
-    </div>
-
-</footer>
-
-
-<script>
-    const factors = {
-        hdpe: 1.9,
-        pvc: 2.1,
-        steel: 6.2,
-        concrete: 0.12
-    };
-
-    document.getElementById("calc-btn").addEventListener("click", () => {
-        const material = document.getElementById("material").value;
-        const weight = Number(document.getElementById("weight").value);
-
-        if (!weight || weight <= 0) {
-            alert("請輸入有效的重量！");
-            return;
-        }
-
-        const emission = (weight * factors[material]).toFixed(2);
-
-        document.getElementById("result").textContent = emission;
-        document.getElementById("result-box").style.display = "block";
-    });
-</script>
-
+  <script type="module" src="../../assets/js/main.js"></script>
 </body>
 </html>
