@@ -183,18 +183,18 @@
                     <div class="aspect-square rounded-3xl overflow-hidden relative shadow-2xl group cursor-pointer tilt-card-trigger">
                         <div class="absolute inset-0 bg-gradient-to-tr from-slate-200 to-primary-100 dark:from-slate-800 dark:to-primary-900/50"></div>
                         <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,_rgba(34,197,94,0.4),transparent_70%)]"></div>
-                        
-                        <div class="absolute inset-0 flex items-center justify-center">
-                             <svg class="w-4/5 h-4/5 text-primary-200/50 dark:text-primary-600/30" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 100 H180" stroke="currentColor" stroke-width="20" stroke-linecap="round" class="animate-pulse"/>
-                                <path d="M100 20 V180" stroke="currentColor" stroke-width="20" stroke-linecap="round" class="animate-pulse" style="animation-delay: 0.5s"/>
-                                <circle cx="100" cy="100" r="30" fill="currentColor" class="group-hover:text-primary-500/50 transition-colors"/>
-                            </svg>
-                        </div>
 
+                        <div class="absolute inset-0 flex items-center justify-center p-4">
+                            <img 
+                                src="/assets/img/bad-pipe.png" 
+                                alt="Bad Pipe Status" 
+                                class="w-4/5 h-4/5 object-contain drop-shadow-lg transition-transform duration-500 group-hover:scale-110"
+                            >
+                        </div>
+                    
                         <div class="absolute bottom-8 left-8 right-8 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md p-6 rounded-2xl shadow-lg transform group-hover:-translate-y-2 transition duration-500 border border-white/20 z-20 tilt-card-content">
                             <div class="flex justify-between items-center mb-3">
-                                <span class="text-red-500 font-bold flex items-center gap-2 text-sm animate-pulse"><i class="fas fa-exclamation-triangle"></i> 風險累積中</span>
+                                <span class="text-red-500 font-bold flex items-center gap-2 text-sm animate-pulse"> 風險累積中</span>
                             </div>
                             <div class="w-full bg-slate-200 rounded-full h-3 dark:bg-slate-700 overflow-hidden">
                                 <div class="bg-gradient-to-r from-red-500 to-orange-500 h-3 rounded-full relative" style="width: 80%">
