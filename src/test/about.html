@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>關於我們 | Greenerx</title>
+    <meta name="description" content="GreenerX 致力於推動建築減重與低碳管道系統，讓隱形的基礎設施成為永續建築的關鍵拼圖。">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e',
+                            600: '#16a34a',
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        slate: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(34, 197, 94, 0.4)',
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Base Transitions */
+        * { transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease; }
+        
+        /* Animation Classes */
+        .anim-hidden { opacity: 0; transition: all 0.8s ease-out; }
+        .slide-in-up { transform: translateY(40px); }
+        .anim-active { opacity: 1; transform: translateY(0); }
+
+        /* Background Pattern */
+        .tech-grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .dark .tech-grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(34, 197, 94, 0.1) 1px, transparent 1px);
+        }
+
+        /* Glassmorphism Card */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+        .dark .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-primary-50/50 dark:bg-slate-900 dark:text-gray-200 overflow-x-hidden flex flex-col min-h-screen">
+
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-primary-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="index.html" class="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
+                    <div class="w-9 h-9 bg-gradient-to-br from-primary-600 to-primary-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg group-hover:shadow-primary-500/30 transition-all duration-300 group-hover:scale-110">G</div>
+                    <span class="font-black text-2xl tracking-tighter text-slate-900 dark:text-white">greenerx</span>
+                </a>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html#why" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">為什麼重要</a>
+                    <a href="index.html#solution" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">解決方案</a>
+                    <a href="calculator.html" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">碳排計算機</a>
+                    <a href="insights.html" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">案例與洞察</a>
+                    
+                    <div class="h-6 w-px bg-gray-300 dark:bg-slate-700"></div>
+
+                    <a href="index.html#assess" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-md hover:shadow-neon transition-all duration-300">
+                        立即評估
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" class="p-2 rounded-full bg-primary-100 dark:bg-slate-800 text-primary-600 dark:text-primary-400 hover:scale-110 transition-transform">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                    <button class="md:hidden p-2 text-slate-600 dark:text-gray-300">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main class="flex-grow pt-32 pb-20 relative">
+        <div class="absolute inset-0 tech-grid-bg pointer-events-none fixed"></div>
+        <div class="absolute top-0 right-0 w-[800px] h-[800px] bg-primary-400/10 dark:bg-primary-600/10 rounded-full blur-[100px] mix-blend-multiply dark:mix-blend-soft-light pointer-events-none fixed"></div>
+
+        <div class="max-w-7xl mx-auto px-4 relative z-10">
+            
+            <section class="max-w-4xl mx-auto text-center mb-24 anim-hidden slide-in-up">
+                <span class="inline-block px-4 py-1.5 rounded-full bg-primary-100 dark:bg-primary-900/50 text-primary-700 dark:text-primary-400 text-sm font-bold mb-6 tracking-wide uppercase">
+                    Our Mission
+                </span>
+                <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white mb-8 leading-tight">
+                    建築減重，<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">低碳未來</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-600 dark:text-slate-300 leading-relaxed font-light mb-12">
+                    <i class="fas fa-quote-left text-primary-400/50 text-lg align-top mr-2"></i>
+                    如果建築能夠「減重」，台灣的減碳之路是否能走得更快？
+                    <i class="fas fa-quote-right text-primary-400/50 text-lg align-top ml-2"></i>
+                </p>
+                <div class="text-lg text-slate-500 dark:text-gray-400 max-w-2xl mx-auto space-y-6">
+                    <p>
+                        GreenerX 誕生於這個簡單卻關鍵的提問。在多數人關注節能設備、再生能源的同時，我們將目光放在往往被忽略、卻影響深遠的「隱形基礎設施」——建築管道系統。
+                    </p>
+                </div>
+            </section>
+
+            <section class="grid md:grid-cols-2 gap-12 items-center mb-24 anim-hidden slide-in-up" data-delay="100">
+                <div>
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-6">
+                        Piping = <span class="text-primary-500">The Blood Vessels</span><br>of a Building
+                    </h2>
+                    <p class="text-slate-600 dark:text-slate-400 mb-6 text-lg">
+                        管道不是配角，而是決定建築健康與未來的關鍵系統。暢通與否，不只決定使用品質，更深刻影響結構安全、施工風險，以及全生命週期的碳排放。
+                    </p>
+                    <div class="p-6 bg-red-50 dark:bg-red-900/10 border-l-4 border-red-500 rounded-r-xl">
+                        <h4 class="font-bold text-red-700 dark:text-red-400 mb-2">當前的挑戰 (CIP/PVC)</h4>
+                        <ul class="space-y-2 text-slate-700 dark:text-gray-300 text-sm">
+                            <li><i class="fas fa-weight-hanging w-6 text-center text-red-500"></i> 管材重量高，增加建築結構負荷</li>
+                            <li><i class="fas fa-smog w-6 text-center text-red-500"></i> 生產與運輸碳排高，不利於淨零目標</li>
+                            <li><i class="fas fa-tools w-6 text-center text-red-500"></i> 耐久性與施工安全風險，影響長期維護</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="relative">
+                    <div class="glass-card p-8 rounded-[2rem] shadow-xl relative z-10 hover:border-primary-400/50 transition-colors group">
+                        <div class="absolute -top-6 -right-6 w-20 h-20 bg-primary-500 rounded-2xl flex items-center justify-center text-white text-3xl font-bold shadow-lg rotate-12 group-hover:rotate-0 transition-transform">
+                            <i class="fas fa-check"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-6">GreenerX 的系統思維</h3>
+                        <p class="text-slate-600 dark:text-gray-400 mb-6">
+                            我們以 <span class="text-primary-600 dark:text-primary-400 font-bold">HDPE (高密度聚乙烯)</span> 為基礎，重新檢視材料選擇的影響：
+                        </p>
+                        <ul class="space-y-4">
+                            <li class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-feather-alt"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-slate-900 dark:text-white">輕量化</strong>
+                                    <span class="text-sm text-slate-500 dark:text-gray-400">較鑄鐵管減重 8–17 倍，大幅降低結構負擔。</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-leaf"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-slate-900 dark:text-white">低碳足跡</strong>
+                                    <span class="text-sm text-slate-500 dark:text-gray-400">製造與運輸碳排更低，用量更精簡。</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-slate-900 dark:text-white">耐久與安全</strong>
+                                    <span class="text-sm text-slate-500 dark:text-gray-400">壽命超 50 年，無滲漏焊接、無切割火星。</span>
+                                </div>
+                            </li>
+                            <li class="flex items-start gap-4">
+                                <div class="w-10 h-10 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 flex items-center justify-center flex-shrink-0">
+                                    <i class="fas fa-recycle"></i>
+                                </div>
+                                <div>
+                                    <strong class="block text-slate-900 dark:text-white">可回收</strong>
+                                    <span class="text-sm text-slate-500 dark:text-gray-400">符合循環經濟與國際永續趨勢。</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-primary-400/20 rounded-full blur-3xl -z-10"></div>
+                </div>
+            </section>
+
+            <section class="mb-24 anim-hidden slide-in-up" data-delay="200">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl font-bold text-slate-900 dark:text-white mb-4">GreenerX 在做什麼？</h2>
+                    <p class="text-slate-600 dark:text-gray-400 max-w-2xl mx-auto">
+                        我們不是單純的材料品牌，而是低碳選材的思考入口。GreenerX 是一個以研究、案例與工具為核心的低碳建築平台。
+                    </p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-6">
+                    <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-transform">
+                        <div class="text-4xl text-primary-500 mb-6"><i class="fas fa-calculator"></i></div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">量化與計算</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">
+                            將「建築減重」轉化為可被理解、比較、計算的概念。透過互動工具（如碳排計算器），協助使用者理解實際影響。
+                        </p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-transform">
+                        <div class="text-4xl text-primary-500 mb-6"><i class="fas fa-book-open"></i></div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">案例與研究</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">
+                            整合材料、結構與碳排的全生命週期觀點，提供案例研究，讓低碳不只停留在理念。
+                        </p>
+                    </div>
+                    <div class="glass-card p-8 rounded-2xl hover:-translate-y-2 transition-transform">
+                        <div class="text-4xl text-primary-500 mb-6"><i class="fas fa-bullhorn"></i></div>
+                        <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">政策與轉型</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed">
+                            支持台灣邁向 Net Zero 2050 的政策與產業轉型，推動低碳管道成為綠建築的標準配備。
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <section class="mb-24 bg-slate-100 dark:bg-slate-800/50 rounded-[3rem] p-12 text-center anim-hidden slide-in-up" data-delay="300">
+                <h2 class="text-2xl font-bold text-slate-900 dark:text-white mb-8">與國際永續目標接軌</h2>
+                <div class="flex flex-wrap justify-center gap-6">
+                    <div class="w-40 h-40 bg-[#fd6925] rounded-xl flex flex-col items-center justify-center text-white p-4 shadow-lg hover:scale-105 transition-transform">
+                        <span class="text-5xl font-black mb-2">9</span>
+                        <span class="text-xs font-bold leading-tight">工業、創新<br>基礎建設</span>
+                    </div>
+                    <div class="w-40 h-40 bg-[#fd9d24] rounded-xl flex flex-col items-center justify-center text-white p-4 shadow-lg hover:scale-105 transition-transform">
+                        <span class="text-5xl font-black mb-2">11</span>
+                        <span class="text-xs font-bold leading-tight">永續城市<br>與社區</span>
+                    </div>
+                    <div class="w-40 h-40 bg-[#bf8b2e] rounded-xl flex flex-col items-center justify-center text-white p-4 shadow-lg hover:scale-105 transition-transform">
+                        <span class="text-5xl font-black mb-2">12</span>
+                        <span class="text-xs font-bold leading-tight">責任消費<br>與生產</span>
+                    </div>
+                </div>
+                <p class="mt-8 text-slate-600 dark:text-gray-400 text-sm">我們相信，真正的永續，來自於制度、設計與材料選擇的改變。</p>
+            </section>
+
+            <section class="text-center mb-24 anim-hidden slide-in-up">
+                <h2 class="text-3xl md:text-5xl font-black text-slate-900 dark:text-white mb-8 leading-tight">
+                    讓隱形的基礎設施，<br>創造<span class="text-primary-500">看得見的改變</span>。
+                </h2>
+                <p class="text-xl text-slate-600 dark:text-gray-300 mb-10 max-w-3xl mx-auto font-medium">
+                    如果台灣建築每年能少 10 萬噸結構重量，就等同於為這座島嶼減少 10 萬噸碳排。GreenerX 希望與關心城市、建築與環境的人一起，讓「低碳管道」成為綠建築的基本配備。
+                </p>
+                <div class="inline-block border-2 border-primary-500 text-primary-600 dark:text-primary-400 px-8 py-4 rounded-full text-2xl font-black tracking-widest uppercase hover:bg-primary-500 hover:text-white transition-all cursor-default shadow-lg shadow-primary-500/20">
+                    Let’s build lighter. Let’s live greener.
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-16 text-sm text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-12 mb-12">
+            <div class="col-span-2">
+                 <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">G</div>
+                    <span class="font-black text-2xl text-white tracking-tighter">greenerx</span>
+                </div>
+                <p class="text-base max-w-md">致力於以創新材料科技，重新定義建築的隱形基礎設施，打造更安全、更永續的城市未來。</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">解決方案</h4>
+                <ul class="space-y-4">
+                    <li><a href="#" class="hover:text-primary-400 transition">輕量化管道系統</a></li>
+                    <li><a href="#" class="hover:text-primary-400 transition">碳排計算服務</a></li>
+                    <li><a href="#" class="hover:text-primary-400 transition">EPD 認證協助</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">公司資訊</h4>
+                 <ul class="space-y-4">
+                    <li><a href="#" class="text-primary-400 font-bold transition">關於我們</a></li>
+                    <li><a href="#" class="hover:text-primary-400 transition">聯絡我們</a></li>
+                    <li><a href="privacy.html" class="hover:text-primary-400 transition">隱私權政策</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2025 Greenerx. All rights reserved.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Logic
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+             html.classList.add('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+        });
+
+        // Animation Logic
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.getAttribute('data-delay') || 0;
+                    setTimeout(() => {
+                         entry.target.classList.add('anim-active');
+                    }, delay);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.anim-hidden').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>關於 GreenerX | 建築減重，低碳未來</title>
+    <meta name="description" content="GreenerX 致力於建築減重與低碳管道系統，重新定義建築的隱形基礎設施，打造更安全、更永續的城市未來。">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;700;900&family=Noto+Sans+TC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'Noto Sans TC', 'sans-serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#f0fdf4',
+                            100: '#dcfce7',
+                            300: '#86efac',
+                            400: '#4ade80',
+                            500: '#22c55e', 
+                            600: '#16a34a', 
+                            700: '#15803d',
+                            800: '#166534',
+                            900: '#14532d',
+                        },
+                        slate: {
+                            800: '#1e293b',
+                            900: '#0f172a',
+                        }
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(34, 197, 94, 0.4)', 
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        /* Base Transitions */
+        * { transition: background-color 0.3s ease, color 0.2s ease, border-color 0.2s ease; }
+        
+        /* Scroll Entrance Animations */
+        .anim-hidden { opacity: 0; transition: all 1s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+        .slide-in-left { transform: translateX(-120px) scale(0.85); }
+        .slide-in-right { transform: translateX(120px) scale(0.85); }
+        .slide-in-up { transform: translateY(80px) scale(0.9); }
+        .anim-active { opacity: 1; transform: translateX(0) translateY(0) scale(1); }
+
+        /* Hover Enhancement */
+        .hover-scale-sm:hover { transform: scale(1.03); }
+        
+        /* 3D Tilt Effect Container */
+        .tilt-card { transform-style: preserve-3d; transform: perspective(1000px); }
+        .tilt-card-content { transform: translateZ(20px); }
+        
+        /* Background Pattern */
+        .tech-grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(34, 197, 94, 0.05) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(34, 197, 94, 0.05) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+        .dark .tech-grid-bg {
+            background-image: 
+                linear-gradient(to right, rgba(34, 197, 94, 0.1) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(34, 197, 94, 0.1) 1px, transparent 1px);
+        }
+        
+        /* Gradient Text */
+        .text-gradient-green {
+            background: linear-gradient(135deg, #22c55e, #16a34a);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="font-sans text-slate-800 bg-primary-50/50 dark:bg-slate-900 dark:text-gray-200 overflow-x-hidden">
+
+    <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-primary-100 dark:border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer group" onclick="window.location.href='/'">
+                    <div class="w-9 h-9 bg-gradient-to-br from-primary-600 to-primary-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg group-hover:shadow-primary-500/30 transition-all duration-300 group-hover:scale-110">G</div>
+                    <span class="font-black text-2xl tracking-tighter text-slate-900 dark:text-white">greenerx</span>
+                </div>
+
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/zh/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">為什麼重要</a>
+                    <a href="/zh/solution/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">解決方案</a>
+                    <a href="/zh/calculator/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">碳排計算機</a>
+                    <a href="/zh/insights/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">案例與洞察</a>
+                    
+                    <div class="h-6 w-px bg-gray-300 dark:bg-slate-700"></div>
+
+                    <a href="/zh/estimate/" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-md hover:shadow-neon transition-all duration-300">
+                        立即評估
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <button id="theme-toggle" class="p-2 rounded-full bg-primary-100 dark:bg-slate-800 text-primary-600 dark:text-primary-400 hover:scale-110 transition-transform">
+                        <i class="fas fa-moon dark:hidden"></i>
+                        <i class="fas fa-sun hidden dark:inline"></i>
+                    </button>
+                    <button class="md:hidden p-2 text-slate-600 dark:text-gray-300">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <section class="relative min-h-[80vh] flex items-center justify-center pt-20 overflow-hidden" onmousemove="parallax(event)">
+        <div class="absolute inset-0 tech-grid-bg"></div>
+        <div data-speed="-1" class="parallax-el absolute top-20 right-20 w-72 h-72 bg-primary-300/20 dark:bg-primary-600/10 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-soft-light animate-float"></div>
+        <div data-speed="2" class="parallax-el absolute bottom-20 left-20 w-96 h-96 bg-blue-300/20 dark:bg-blue-600/10 rounded-full blur-3xl mix-blend-multiply dark:mix-blend-soft-light animate-float" style="animation-delay: 2s"></div>
+        
+        <div class="relative max-w-5xl mx-auto px-4 text-center z-10">
+            <div class="anim-hidden slide-in-up anim-active delay-100">
+                <span class="inline-block py-1 px-3 rounded-full bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 text-sm font-bold mb-6 border border-primary-200 dark:border-primary-800">關於 GreenerX</span>
+                <h1 class="text-5xl md:text-7xl font-black leading-tight mb-8 tracking-tight">
+                    建築減重，<br>
+                    <span class="text-gradient-green">低碳未來</span>
+                </h1>
+                <p class="text-xl md:text-2xl text-slate-600 dark:text-gray-300 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
+                    「如果建築能夠『減重』，台灣的減碳之路是否能走得更快？」<br>
+                    <span class="text-base text-slate-500 mt-4 block">這是一個簡單，卻足以改變產業現狀的提問。</span>
+                </p>
+                <div class="w-24 h-1 bg-gradient-to-r from-primary-400 to-primary-600 mx-auto rounded-full"></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-white dark:bg-slate-900 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="anim-hidden slide-in-left">
+                    <h2 class="text-3xl md:text-4xl font-black mb-6">管道不是配角，<br>是建築的<span class="text-gradient-green">血管</span></h2>
+                    <p class="text-lg text-slate-600 dark:text-gray-400 mb-6 leading-relaxed">
+                        在多數人關注節能設備、再生能源的同時，GreenerX 將目光放在往往被忽略、卻影響深遠的「隱形基礎設施」——建築管道系統。
+                    </p>
+                    <p class="text-lg text-slate-600 dark:text-gray-400 mb-8 leading-relaxed">
+                        就像人體一樣，血管是否順暢，不只決定使用品質，更深刻影響結構安全、施工風險，以及全生命週期的碳排放。
+                    </p>
+                    
+                    <div class="bg-slate-50 dark:bg-slate-800/50 p-6 rounded-2xl border border-slate-100 dark:border-slate-700">
+                        <h4 class="font-bold text-slate-900 dark:text-white mb-3 flex items-center gap-2">
+                            <i class="fas fa-exclamation-circle text-red-500"></i> 我們看到的現狀問題
+                        </h4>
+                        <ul class="space-y-2 text-slate-600 dark:text-gray-400 text-sm">
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2"></span>傳統 CIP/PVC 管材重量過重，增加結構負荷。</li>
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2"></span>高碳排材料生產與運輸成本高，不利淨零目標。</li>
+                            <li class="flex items-start gap-2"><span class="w-1.5 h-1.5 rounded-full bg-slate-400 mt-2"></span>綠建築制度缺乏對「低碳管道」的系統性評估。</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="relative anim-hidden slide-in-right">
+                    <div class="aspect-[4/5] rounded-[2.5rem] overflow-hidden relative shadow-2xl group tilt-card">
+                        <div class="absolute inset-0 bg-slate-900"></div>
+                        <div class="absolute inset-0 bg-gradient-to-b from-primary-900/40 to-slate-900"></div>
+                        <svg class="absolute inset-0 w-full h-full opacity-30" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <path d="M50 0 V100" stroke="#22c55e" stroke-width="0.5" class="animate-pulse"/>
+                            <path d="M20 0 V100" stroke="#22c55e" stroke-width="0.2"/>
+                            <path d="M80 0 V100" stroke="#22c55e" stroke-width="0.2"/>
+                            <path d="M0 30 H100" stroke="#22c55e" stroke-width="0.2"/>
+                            <path d="M0 70 H100" stroke="#22c55e" stroke-width="0.2"/>
+                        </svg>
+                        
+                        <div class="absolute inset-0 flex flex-col justify-center items-center text-center p-8 tilt-card-content">
+                            <div class="w-20 h-20 bg-primary-500 rounded-full flex items-center justify-center text-white text-3xl shadow-[0_0_30px_rgba(34,197,94,0.6)] mb-6 animate-pulse">
+                                <i class="fas fa-heartbeat"></i>
+                            </div>
+                            <h3 class="text-2xl font-bold text-white mb-2">Piping = </h3>
+                            <h3 class="text-2xl font-bold text-primary-400 mb-4">The Blood Vessels</h3>
+                            <p class="text-slate-300 text-sm">管道不是附屬品，<br>而是建築生命的延續。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-primary-50 dark:bg-slate-800/50 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-16 anim-hidden slide-in-up">
+                <h2 class="text-3xl md:text-5xl font-black mb-6">HDPE：思維的轉變</h2>
+                <p class="text-lg text-slate-500 dark:text-gray-400 max-w-2xl mx-auto">
+                    GreenerX 將「建築減重」視為低碳建築的起點，並以 HDPE（高密度聚乙烯）管道系統作為實證基礎。這不只是材料替代，而是系統性的升級。
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="tilt-card anim-hidden slide-in-up" data-delay="0">
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-[2rem] shadow-xl hover:shadow-neon transition-all duration-300 border border-primary-100 dark:border-slate-700 h-full group hover:-translate-y-2">
+                        <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mb-6 text-primary-600 text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fas fa-feather-alt"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">極致輕量化</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+                            可較傳統鑄鐵管減重 8–17 倍。大幅降低結構負擔，同時減少吊掛與施工時的重物風險。
+                        </p>
+                        <div class="text-4xl font-black text-slate-200 dark:text-slate-700 absolute top-8 right-8 pointer-events-none select-none">01</div>
+                    </div>
+                </div>
+
+                <div class="tilt-card anim-hidden slide-in-up" data-delay="100">
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-[2rem] shadow-xl hover:shadow-neon transition-all duration-300 border border-primary-100 dark:border-slate-700 h-full group hover:-translate-y-2">
+                        <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mb-6 text-primary-600 text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fas fa-leaf"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">低碳排與耐久</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+                            製造與運輸碳排更低。壽命超過 50 年，無滲漏焊接技術，杜絕維修與更換的二次碳排。
+                        </p>
+                        <div class="text-4xl font-black text-slate-200 dark:text-slate-700 absolute top-8 right-8 pointer-events-none select-none">02</div>
+                    </div>
+                </div>
+
+                <div class="tilt-card anim-hidden slide-in-up" data-delay="200">
+                    <div class="bg-white dark:bg-slate-800 p-8 rounded-[2rem] shadow-xl hover:shadow-neon transition-all duration-300 border border-primary-100 dark:border-slate-700 h-full group hover:-translate-y-2">
+                        <div class="w-14 h-14 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mb-6 text-primary-600 text-2xl group-hover:scale-110 transition-transform">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">完全可回收</h3>
+                        <p class="text-slate-600 dark:text-gray-400 text-sm leading-relaxed mb-4">
+                            符合循環經濟趨勢。避免傳統管材在生命週期結束後燃燒產生的有毒物質，真正落實永續。
+                        </p>
+                        <div class="text-4xl font-black text-slate-200 dark:text-slate-700 absolute top-8 right-8 pointer-events-none select-none">03</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center anim-hidden slide-in-up">
+                <span class="inline-block px-4 py-2 bg-slate-200 dark:bg-slate-700 rounded-lg text-xs font-bold text-slate-600 dark:text-slate-300">
+                    <i class="fas fa-check-circle text-primary-500 mr-2"></i>已應用於：北京大興機場、澳洲 Meriton 大樓、台北大巨蛋
+                </span>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-24 bg-slate-900 text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')]"></div>
+        
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid md:grid-cols-2 gap-20 items-center">
+                <div class="anim-hidden slide-in-left">
+                    <h2 class="text-3xl font-black mb-6">GreenerX 在做什麼？</h2>
+                    <p class="text-slate-300 mb-8 leading-relaxed">
+                        我們不是材料品牌，而是低碳選材的思考入口。GreenerX 是一個以研究、案例與工具為核心的低碳建築平台。
+                    </p>
+                    <ul class="space-y-4">
+                        <li class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10 hover:border-primary-500/50 transition">
+                            <span class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center font-bold"><i class="fas fa-calculator"></i></span>
+                            <span>透過碳排計算器，將「建築減重」數據化</span>
+                        </li>
+                        <li class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10 hover:border-primary-500/50 transition">
+                            <span class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center font-bold"><i class="fas fa-book-open"></i></span>
+                            <span>提供全生命週期觀點的案例研究</span>
+                        </li>
+                        <li class="flex items-center gap-4 bg-white/5 p-4 rounded-xl border border-white/10 hover:border-primary-500/50 transition">
+                            <span class="w-10 h-10 bg-primary-600 rounded-full flex items-center justify-center font-bold"><i class="fas fa-city"></i></span>
+                            <span>支持 Net Zero 2050 政策與產業轉型</span>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="anim-hidden slide-in-right">
+                    <h3 class="text-xl font-bold mb-6 text-primary-400">接軌國際永續目標 (SDGs)</h3>
+                    <div class="grid grid-cols-1 gap-4">
+                        <div class="flex items-center p-5 bg-gradient-to-r from-orange-600 to-orange-500 rounded-xl shadow-lg transform hover:scale-105 transition-transform">
+                            <span class="text-4xl font-black mr-4 opacity-50">09</span>
+                            <div>
+                                <div class="font-bold text-xs uppercase opacity-80">SDG 9</div>
+                                <div class="font-bold text-lg">永續工業、創新與基礎建設</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-5 bg-gradient-to-r from-amber-600 to-amber-500 rounded-xl shadow-lg transform hover:scale-105 transition-transform">
+                            <span class="text-4xl font-black mr-4 opacity-50">11</span>
+                            <div>
+                                <div class="font-bold text-xs uppercase opacity-80">SDG 11</div>
+                                <div class="font-bold text-lg">永續城市與社區</div>
+                            </div>
+                        </div>
+                        <div class="flex items-center p-5 bg-gradient-to-r from-yellow-700 to-yellow-600 rounded-xl shadow-lg transform hover:scale-105 transition-transform">
+                            <span class="text-4xl font-black mr-4 opacity-50">12</span>
+                            <div>
+                                <div class="font-bold text-xs uppercase opacity-80">SDG 12</div>
+                                <div class="font-bold text-lg">責任消費與生產</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 bg-white dark:bg-slate-950 text-center relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full bg-gradient-to-b from-primary-50 to-transparent dark:from-slate-900 dark:to-slate-950 -z-10"></div>
+        
+        <div class="max-w-4xl mx-auto px-4 anim-hidden slide-in-up">
+            <h2 class="text-4xl md:text-6xl font-black mb-8 leading-tight">
+                Let’s build <span class="text-primary-500">lighter</span>.<br>
+                Let’s live <span class="text-primary-600">greener</span>.
+            </h2>
+            <p class="text-xl text-slate-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+                如果台灣建築每年能少 10 萬噸結構重量，就等同於為這座島嶼減少 10 萬噸碳排。<br>
+                讓「低碳管道」成為綠建築的基本配備，讓隱形的基礎設施，創造看得見的改變。
+            </p>
+            
+            <div class="flex flex-col sm:flex-row justify-center gap-6">
+                <a href="/zh/estimate/" class="magnetic-btn px-10 py-5 bg-primary-600 text-white rounded-full font-bold hover:bg-primary-500 transition shadow-lg hover:shadow-neon flex items-center justify-center gap-3 hover:scale-105">
+                    加入改變的行列
+                </a>
+                <a href="/zh/solution/" class="magnetic-btn px-10 py-5 bg-white dark:bg-slate-800 text-slate-900 dark:text-white border border-slate-200 dark:border-slate-700 rounded-full font-bold hover:shadow-lg transition flex items-center justify-center gap-3 hover:scale-105">
+                    深入了解解決方案
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-slate-900 border-t border-slate-800 py-16 text-sm text-slate-400">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-12 mb-12">
+            <div class="col-span-2">
+                 <div class="flex items-center gap-3 mb-6">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">G</div>
+                    <span class="font-black text-2xl text-white tracking-tighter">greenerx</span>
+                </div>
+                <p class="text-base max-w-md">致力於以創新材料科技，重新定義建築的隱形基礎設施，打造更安全、更永續的城市未來。</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">解決方案</h4>
+                <ul class="space-y-4">
+                    <li><a href="#" class="hover:text-primary-400 transition">輕量化管道系統</a></li>
+                    <li><a href="#" class="hover:text-primary-400 transition">碳排計算服務</a></li>
+                    <li><a href="#" class="hover:text-primary-400 transition">EPD 認證協助</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">公司資訊</h4>
+                 <ul class="space-y-4">
+                    <li><a href="#" class="hover:text-primary-400 transition">關於我們</a></li>
+                    <li><a href="#" class="hover:text-primary-400 transition">聯絡我們</a></li>
+                    <li><a href="#" class="hover:text-primary-400 transition">隱私權政策</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
+            <p>&copy; 2025 Greenerx. All rights reserved.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-linkedin"></i></a>
+                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+             html.classList.add('dark');
+        }
+        
+        themeToggle.addEventListener('click', () => {
+            html.classList.toggle('dark');
+        });
+
+        // 1. Scroll Entrance Animations
+        const observerOptions = {
+            threshold: 0.15,
+            rootMargin: "0px 0px -100px 0px"
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    const delay = entry.target.getAttribute('data-delay') || 0;
+                    setTimeout(() => {
+                         entry.target.classList.add('anim-active');
+                    }, delay);
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.anim-hidden').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 2. Mouse Move Parallax (Hero)
+        function parallax(e) {
+            if (window.innerWidth < 768) return; 
+            this.querySelectorAll('.parallax-el').forEach(el => {
+                const speed = el.getAttribute('data-speed');
+                const x = (window.innerWidth - e.pageX * speed) / 100;
+                const y = (window.innerHeight - e.pageY * speed) / 100;
+                el.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+        }
+
+        // 3. 3D Hover Tilt Effect
+        document.querySelectorAll('.tilt-card').forEach(card => {
+            if (window.innerWidth < 768) return; 
+
+            card.addEventListener('mousemove', function(e) {
+                const cardRect = this.getBoundingClientRect();
+                const centerX = cardRect.left + cardRect.width / 2;
+                const centerY = cardRect.top + cardRect.height / 2;
+                const mouseX = e.clientX - centerX;
+                const mouseY = e.clientY - centerY;
+                
+                const rotateX = (mouseY / (cardRect.height / 2)) * -8;
+                const rotateY = (mouseX / (cardRect.width / 2)) * 8;
+
+                this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+                this.style.zIndex = '10';
+            });
+
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale(1)`;
+                this.style.zIndex = '1';
+            });
+        });
+
+        // 4. Magnetic Buttons
+        if (window.innerWidth > 768) {
+            document.querySelectorAll('.magnetic-btn').forEach(btn => {
+                btn.addEventListener('mousemove', function(e) {
+                    const rect = this.getBoundingClientRect();
+                    const x = e.clientX - rect.left - rect.width / 2;
+                    const y = e.clientY - rect.top - rect.height / 2;
+                    this.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px) scale(1.05)`;
+                });
+                btn.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translate(0, 0) scale(1)';
+                });
+            });
+        }
+    </script>
+</body>
+</html>
