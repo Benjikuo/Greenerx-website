@@ -254,8 +254,8 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
             <p>&copy; 2025 Greenerx. All rights reserved.</p>
             <div class="flex gap-6 mt-4 md:mt-0">
-                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fa-instagram"></i></a>
-                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fa-facebook"></i></a>
+                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-facebook"></i></a>
             </div>
         </div>
     </footer>
@@ -290,6 +290,20 @@
         }, observerOptions);
 
         document.querySelectorAll('.anim-hidden').forEach(el => observer.observe(el));
+        document.getElementById('lang-switch').addEventListener('click', function() {
+            // 1. 獲取當前路徑 (例如: /zh/solution/)
+            const currentPath = window.location.pathname;
+                
+            // 2. 檢查路徑中是否包含 /zh/
+            if (currentPath.includes('/zh/')) {
+                // 3. 替換並跳轉
+                const newPath = currentPath.replace('/zh/', '/en/');
+                window.location.href = newPath;
+            } else {
+                // 例外處理：如果在首頁或其他沒有 /zh/ 的狀況，強制導向英文首頁
+                window.location.href = '/en/';
+            }
+        });
     </script>
 </body>
 </html>
