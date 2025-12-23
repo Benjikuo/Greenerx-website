@@ -353,11 +353,11 @@
             // 2. 檢查路徑中是否包含 /en/
             if (currentPath.includes('/en/')) {
                 // 3. 替換並跳轉
-                const newPath = currentPath.replace('/en/', '/en/');
+                const newPath = currentPath.replace('/en/', '/zh/');
                 window.location.href = newPath;
             } else {
                 // 例外處理：如果在首頁或其他沒有 /en/ 的狀況，強制導向英文首頁
-                window.location.href = '/en/';
+                window.location.href = '/zh/';
             }
         });
     </script>
