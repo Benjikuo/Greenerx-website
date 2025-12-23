@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Greenerx 案例與洞察 | 實證數據</title>
+    <title>Greenerx | 案例與洞察</title>
     <meta name="description" content="Greenerx 實際建案數據與產業深度洞察。查看我們如何協助建築減重與達成 ESG 目標。">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -83,26 +83,30 @@
     <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-primary-100 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <a href="index.html" class="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
-                    <div class="w-9 h-9 bg-gradient-to-br from-primary-600 to-primary-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg group-hover:shadow-primary-500/30 transition-all duration-300 group-hover:scale-110">G</div>
+                <a href="/zh/" class="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
+                    <img src="/assets/img/GreenerX-logo.png" alt="📂" class="w-9 h-9 from-primary-600 to-primary-500 rounded-xl flex items-center justify-center group-hover:shadow-primary-500/30 transition-all duration-300 group-hover:scale-110">
                     <span class="font-black text-2xl tracking-tighter text-slate-900 dark:text-white">greenerx</span>
                 </a>
 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/en/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">為什麼重要</a>
-                    <a href="/en/solution/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">解決方案</a>
-                    <a href="/en/calculator/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">碳排計算機</a>
-                    <a href="/en/insights/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">案例與洞察</a>
-                    
+                    <a href="/zh/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition relative after:absolute after:bottom-[-5px] after:left-0 after:h-[2px] after:w-0 after:bg-primary-600 after:transition-all hover:after:w-full">Why</a>
+                    <a href="/zh/solution/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition relative after:absolute after:bottom-[-5px] after:left-0 after:h-[2px] after:w-0 after:bg-primary-600 after:transition-all hover:after:w-full">Solutions</a>
+                    <a href="/zh/calculator/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition relative after:absolute after:bottom-[-5px] after:left-0 after:h-[2px] after:w-0 after:bg-primary-600 after:transition-all hover:after:w-full">Calculator</a>
+                    <a href="/zh/insights/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition relative after:absolute after:bottom-[-5px] after:left-0 after:h-[2px] after:w-0 after:bg-primary-600 after:transition-all hover:after:w-full"> Insights</a>
+
                     <div class="h-6 w-px bg-gray-300 dark:bg-slate-700"></div>
 
-                    <a href="/en/estimate/" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-md hover:shadow-neon transition-all duration-300">
-                        立即評估
+                    <a href="/zh/estimate/" class="magnetic-btn bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-md hover:shadow-neon transition-all duration-300 relative overflow-hidden group">
+                        <span class="relative z-10">Get an estimate</span>
+                        <div class="absolute inset-0 h-full w-full bg-gradient-to-r from-primary-500 to-primary-600 scale-0 group-hover:scale-150 transition-transform duration-500 rounded-full origin-center opacity-50"></div>
                     </a>
                 </div>
 
                 <div class="flex items-center gap-3">
-                    <button id="theme-toggle" class="p-2 rounded-full bg-primary-100 dark:bg-slate-800 text-primary-600 dark:text-primary-400 hover:scale-110 transition-transform">
+                    <button id="lang-switch" class="w-9 h-9 p-0 rounded-full bg-primary-100 dark:bg-slate-800 text-primary-600 dark:text-primary-400 hover:scale-110 transition-transform flex items-center justify-center font-bold text-sm tracking-wide" title="Switch to English">
+                        中
+                    </button>
+                    <button id="theme-toggle" class="w-9 h-9 p-0 rounded-full bg-primary-100 dark:bg-slate-800 text-primary-600 dark:text-primary-400 hover:scale-110 transition-transform">
                         <i class="fas fa-moon dark:hidden"></i>
                         <i class="fas fa-sun hidden dark:inline"></i>
                     </button>
@@ -120,9 +124,6 @@
         
         <div class="max-w-7xl mx-auto px-4 relative z-10">
             <div class="max-w-3xl anim-hidden slide-in-up">
-                <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-primary-100 dark:bg-primary-900/30 border border-primary-200 dark:border-primary-500/30 text-primary-700 dark:text-primary-400 text-xs font-bold mb-6">
-                    <i class="fas fa-check-circle"></i> PROVEN RESULTS
-                </div>
                 <h1 class="text-4xl md:text-6xl font-black text-slate-900 dark:text-white leading-tight mb-6">
                     數據會說話：<br>
                     <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">真實案例</span> 與 <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">深度洞察</span>
@@ -252,7 +253,7 @@
                 所有的偉大建築，都始於精確的計算。立即輸入您的專案參數。
             </p>
             <div class="anim-hidden slide-in-up" data-delay="200">
-                <a href="index.html#calculator" class="inline-flex items-center gap-3 px-10 py-5 bg-primary-600 hover:bg-primary-500 text-white font-bold rounded-full shadow-lg shadow-primary-600/30 hover:shadow-neon transform hover:-translate-y-1 transition-all text-lg">
+                <a href="/zh/estimate/" class="inline-flex items-center gap-3 px-10 py-5 bg-primary-600 hover:bg-primary-500 text-white font-bold rounded-full shadow-lg shadow-primary-600/30 hover:shadow-neon transform hover:-translate-y-1 transition-all text-lg">
                     <i class="fas fa-calculator"></i> 免費進行建築評估
                 </a>
             </div>
@@ -263,33 +264,33 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-12 mb-12">
             <div class="col-span-2">
                  <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">G</div>
+                    <img src="/assets/img/GreenerX-logo.png" alt="📂" class="w-9 h-9 from-primary-600 to-primary-500 rounded-xl flex items-center justify-center group-hover:shadow-primary-500/30 transition-all duration-300 group-hover:scale-110">
                     <span class="font-black text-2xl text-white tracking-tighter">greenerx</span>
                 </div>
-                <p class="text-base max-w-md">致力於以創新材料科技，重新定義建築的隱形基礎設施，打造更安全、更永續的城市未來。</p>
+                <p class="text-base max-w-md">Innovative materials redefining the hidden foundations of safer, sustainable cities.</p>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">解決方案</h4>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">Topics</h4>
                 <ul class="space-y-4">
-                    <li><a href="#" class="hover:text-primary-400 transition">輕量化管道系統</a></li>
-                    <li><a href="#" class="hover:text-primary-400 transition">碳排計算服務</a></li>
-                    <li><a href="#" class="hover:text-primary-400 transition">EPD 認證協助</a></li>
+                    <li><a href="\zh\solution\" class="hover:text-primary-400 transition">Solutions</a></li>
+                    <li><a href="\zh\calculator\" class="hover:text-primary-400 transition">Calculator</a></li>
+                    <li><a href="\zh\insights\" class="hover:text-primary-400 transition">Insights</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">公司資訊</h4>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">About</h4>
                  <ul class="space-y-4">
-                    <li><a href="#" class="hover:text-primary-400 transition">關於我們</a></li>
-                    <li><a href="#" class="hover:text-primary-400 transition">聯絡我們</a></li>
-                    <li><a href="#" class="hover:text-primary-400 transition">隱私權政策</a></li>
+                    <li><a href="\zh\about\" class="hover:text-primary-400 transition">About Us</a></li>
+                    <li><a href="\zh\contact\" class="hover:text-primary-400 transition">Contact</a></li>
+                    <li><a href="\zh\privacy\" class="hover:text-primary-400 transition">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
             <p>&copy; 2025 Greenerx. All rights reserved.</p>
             <div class="flex gap-6 mt-4 md:mt-0">
-                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-facebook"></i></a>
             </div>
         </div>
     </footer>
@@ -344,6 +345,20 @@
                 this.classList.add('active');
                 this.classList.remove('bg-white', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-400');
             });
+        });
+        document.getElementById('lang-switch').addEventListener('click', function() {
+            // 1. 獲取當前路徑 (例如: /zh/solution/)
+            const currentPath = window.location.pathname;
+                
+            // 2. 檢查路徑中是否包含 /zh/
+            if (currentPath.includes('/zh/')) {
+                // 3. 替換並跳轉
+                const newPath = currentPath.replace('/zh/', '/en/');
+                window.location.href = newPath;
+            } else {
+                // 例外處理：如果在首頁或其他沒有 /zh/ 的狀況，強制導向英文首頁
+                window.location.href = '/en/';
+            }
         });
     </script>
 </body>

@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Greenerx | 建築的血管，決定城市的未來</title>
+    <title>Greenerx | Urban Lifelines</title>
     <meta name="description" content="Greenerx 提供革命性的建築管道系統解決方案。減少建築重量，降低碳排，提升結構安全。">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -97,26 +97,30 @@
     <nav class="fixed w-full z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-lg border-b border-primary-100 dark:border-slate-800">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20">
-                <div class="flex-shrink-0 flex items-center gap-2 cursor-pointer group" onclick="window.scrollTo(0,0)">
-                    <div class="w-9 h-9 bg-gradient-to-br from-primary-600 to-primary-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg group-hover:shadow-primary-500/30 transition-all duration-300 group-hover:scale-110">G</div>
+                <a href="/zh/" class="flex-shrink-0 flex items-center gap-2 cursor-pointer group">
+                    <img src="/assets/img/GreenerX-logo.png" alt="📂" class="w-9 h-9 from-primary-600 to-primary-500 rounded-xl flex items-center justify-center group-hover:shadow-primary-500/30 transition-all duration-300 group-hover:scale-110">
                     <span class="font-black text-2xl tracking-tighter text-slate-900 dark:text-white">greenerx</span>
-                </div>
+                </a>
 
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="/en/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">為什麼重要</a>
-                    <a href="/en/solution/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">解決方案</a>
-                    <a href="/en/calculator/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">碳排計算機</a>
-                    <a href="/en/insights/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition">案例與洞察</a>
-                    
+                    <a href="/zh/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition relative after:absolute after:bottom-[-5px] after:left-0 after:h-[2px] after:w-0 after:bg-primary-600 after:transition-all hover:after:w-full">Why</a>
+                    <a href="/zh/solution/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition relative after:absolute after:bottom-[-5px] after:left-0 after:h-[2px] after:w-0 after:bg-primary-600 after:transition-all hover:after:w-full">Solutions</a>
+                    <a href="/zh/calculator/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition relative after:absolute after:bottom-[-5px] after:left-0 after:h-[2px] after:w-0 after:bg-primary-600 after:transition-all hover:after:w-full">Calculator</a>
+                    <a href="/zh/insights/" class="nav-link text-sm font-medium hover:text-primary-600 dark:hover:text-primary-400 transition relative after:absolute after:bottom-[-5px] after:left-0 after:h-[2px] after:w-0 after:bg-primary-600 after:transition-all hover:after:w-full"> Insights</a>
+
                     <div class="h-6 w-px bg-gray-300 dark:bg-slate-700"></div>
 
-                    <a href="/en/estimate/" class="bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-md hover:shadow-neon transition-all duration-300">
-                        立即評估
+                    <a href="/zh/estimate/" class="magnetic-btn bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-full text-sm font-bold shadow-md hover:shadow-neon transition-all duration-300 relative overflow-hidden group">
+                        <span class="relative z-10">Get an estimate</span>
+                        <div class="absolute inset-0 h-full w-full bg-gradient-to-r from-primary-500 to-primary-600 scale-0 group-hover:scale-150 transition-transform duration-500 rounded-full origin-center opacity-50"></div>
                     </a>
                 </div>
 
                 <div class="flex items-center gap-3">
-                    <button id="theme-toggle" class="p-2 rounded-full bg-primary-100 dark:bg-slate-800 text-primary-600 dark:text-primary-400 hover:scale-110 transition-transform">
+                    <button id="lang-switch" class="w-9 h-9 p-0 rounded-full bg-primary-100 dark:bg-slate-800 text-primary-600 dark:text-primary-400 hover:scale-110 transition-transform flex items-center justify-center font-bold text-sm tracking-wide" title="Switch to English">
+                        中
+                    </button>
+                    <button id="theme-toggle" class="w-9 h-9 p-0 rounded-full bg-primary-100 dark:bg-slate-800 text-primary-600 dark:text-primary-400 hover:scale-110 transition-transform">
                         <i class="fas fa-moon dark:hidden"></i>
                         <i class="fas fa-sun hidden dark:inline"></i>
                     </button>
@@ -135,25 +139,23 @@
         
         <div class="relative max-w-6xl mx-auto px-4 text-center z-10">
             <div class="anim-hidden slide-in-up anim-active delay-100">
-                <div class="inline-flex items-center gap-2 py-1.5 px-4 rounded-full bg-white dark:bg-slate-800 border border-primary-100 dark:border-primary-900/50 shadow-sm text-primary-700 dark:text-primary-300 text-xs font-bold mb-8 hover:scale-105 transition-transform cursor-default">
-                    <i class="fas fa-bolt text-primary-500 animate-bounce"></i> AEO 優化：建築隱形風險指南
-                </div>
+                
                 <h1 class="text-5xl md:text-7xl font-black leading-tight mb-8 tracking-tight">
-                    建築的碳排與安全，<br>
-                    在<span class="text-gradient-green relative inline-block after:absolute after:bottom-2 after:left-0 after:w-full after:h-3 after:bg-primary-500/20 after:-z-10 after:-rotate-2">看不見的地方</span><br>
-                    就已經決定了。
+                    Carbon and safety in buildings<br>
+                    are decided<br>
+                    <span class="text-gradient-green relative inline-block after:absolute after:bottom-2 after:left-0 after:w-full after:h-3 after:bg-primary-500/20 after:-z-10 after:-rotate-2">where you can’t see.</span><br>
                 </h1>
                 <p class="text-xl md:text-2xl text-slate-600 dark:text-gray-400 max-w-3xl mx-auto mb-12 leading-relaxed font-light">
-                    一棟建築的命運，往往在完工前就已經「鎖死」。<br>
-                    別讓傳統管道選擇，成為未來數十年的隱形成本。
+                    A building’s fate is often "locked" in before completion.<br>
+                    Outdated pipe choices create invisible costs for decades.
                 </p>
                 <div class="flex flex-col sm:flex-row justify-center gap-5">
                     <a href="#why" class="magnetic-btn px-10 py-5 bg-slate-900 dark:bg-white text-white dark:text-slate-900 rounded-full font-bold hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3 group">
-                        <span>探索隱形風險</span>
+                        <span>Explore</span>
                         <i class="fas fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
                     </a>
-                    <a href="#calculator" class="magnetic-btn px-10 py-5 bg-white dark:bg-slate-800 text-primary-600 dark:text-primary-400 border-2 border-primary-100 dark:border-primary-900 rounded-full font-bold hover:border-primary-500 hover:shadow-md hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3">
-                        <i class="fas fa-calculator"></i> 計算建築影響
+                    <a href="/zh/calculator/" class="magnetic-btn px-10 py-5 bg-white dark:bg-slate-800 text-primary-600 dark:text-primary-400 border-2 border-primary-100 dark:border-primary-900 rounded-full font-bold hover:border-primary-500 hover:shadow-md hover:scale-105 transition-all duration-300 flex items-center justify-center gap-3">
+                        <i class="fas fa-calculator"></i> Calculate Impact
                     </a>
                 </div>
             </div>
@@ -164,42 +166,37 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="grid md:grid-cols-2 gap-20 items-center">
                 <div class="anim-hidden slide-in-left">
-                    <h2 class="text-4xl font-black mb-8 leading-tight">管道，是建築的血管<br><span class="text-gradient-green">卻長期被低估</span></h2>
+                    <h2 class="text-4xl font-black mb-8 leading-tight">Pipes Are a Building’s<br><span class="text-gradient-green">Hidden Blood Vessels</span></h2>
                     <p class="text-lg text-slate-600 dark:text-gray-400 mb-8 leading-relaxed">
-                        就像人體一樣，血管是否順暢，決定整體健康。在多數建案中，管道只被視為「看不到的設備」，只要能過法規、越便宜越好。
+                        Like the human body, health depends on blood flow. However, pipes are treated as unseen, cost-driven systems.
                     </p>
                     <div class="p-8 bg-red-50 dark:bg-red-900/10 border-l-4 border-red-500 rounded-r-2xl shadow-sm hover:shadow-md transition-shadow hover:translate-x-2">
-                        <p class="font-bold text-lg text-red-700 dark:text-red-400 mb-4">不可逆的代價：</p>
+                        <p class="font-bold text-lg text-red-700 dark:text-red-400 mb-4">Irreversible Costs：</p>
                         <ul class="space-y-3 text-slate-700 dark:text-gray-300 font-medium">
-                            <li class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-3 text-xl"></i> 重量過重，增加施工風險</li>
-                            <li class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-3 text-xl"></i> 施工複雜，放大工安問題</li>
-                            <li class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-3 text-xl"></i> 高碳排材料，鎖定數十年</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-3 text-xl"></i> Excessive Weight Increases Construction Risks</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-3 text-xl"></i> Complex Installation Amplifies Safety Issues</li>
+                            <li class="flex items-center"><i class="fas fa-times-circle text-red-500 mr-3 text-xl"></i> High-Carbon Materials Lock in Decades of Emissions</li>
                         </ul>
                     </div>
                 </div>
                 
                 <div class="relative anim-hidden slide-in-right">
                     <div class="aspect-square rounded-3xl overflow-hidden relative shadow-2xl group cursor-pointer tilt-card-trigger">
-                        <div class="absolute inset-0 bg-gradient-to-tr from-slate-200 to-primary-100 dark:from-slate-800 dark:to-primary-900/50"></div>
-                        <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_50%_50%,_rgba(34,197,94,0.4),transparent_70%)]"></div>
                         
-                        <div class="absolute inset-0 flex items-center justify-center">
-                             <svg class="w-4/5 h-4/5 text-primary-200/50 dark:text-primary-600/30" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 100 H180" stroke="currentColor" stroke-width="20" stroke-linecap="round" class="animate-pulse"/>
-                                <path d="M100 20 V180" stroke="currentColor" stroke-width="20" stroke-linecap="round" class="animate-pulse" style="animation-delay: 0.5s"/>
-                                <circle cx="100" cy="100" r="30" fill="currentColor" class="group-hover:text-primary-500/50 transition-colors"/>
-                            </svg>
-                        </div>
-
+                        <img 
+                            src="/assets/img/bad-pipe.png" 
+                            alt="Bad Pipe Status" 
+                            class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 z-0"
+                        >
+                    
+                        <div class="absolute inset-0 bg-black/10 z-10 pointer-events-none"></div>
+                    
                         <div class="absolute bottom-8 left-8 right-8 bg-white/90 dark:bg-slate-800/90 backdrop-blur-md p-6 rounded-2xl shadow-lg transform group-hover:-translate-y-2 transition duration-500 border border-white/20 z-20 tilt-card-content">
                             <div class="flex justify-between items-center mb-3">
-                                <span class="font-bold text-slate-500 dark:text-slate-300">當前狀態：隱形</span>
-                                <span class="text-red-500 font-bold flex items-center gap-2 text-sm animate-pulse"><i class="fas fa-exclamation-triangle"></i> 風險累積中</span>
+                                <span class="text-red-500 font-bold flex items-center gap-2 text-sm animate-pulse"> Risk is mounting!</span>
                             </div>
                             <div class="w-full bg-slate-200 rounded-full h-3 dark:bg-slate-700 overflow-hidden">
-                                <div class="bg-gradient-to-r from-red-500 to-orange-500 h-3 rounded-full relative" style="width: 80%">
-                                    <span class="absolute right-0 top-0 h-full w-full bg-white/30 animate-[shimmer_2s_infinite]"></span>
-                                </div>
+                                <div class="bg-gradient-to-r from-red-500 to-orange-500 h-3 rounded-full relative" style="width: 80%"></div>
                             </div>
                         </div>
                     </div>
@@ -214,8 +211,8 @@
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-20 anim-hidden slide-in-up">
-                <h2 class="text-4xl md:text-5xl font-black mb-6">傳統管道正在製造<br><span class="text-gradient-green">三個巨大的隱形成本</span></h2>
-                <p class="text-xl text-slate-500 dark:text-gray-400 max-w-2xl mx-auto">這不是小零件，而是系統性問題。滑鼠移入卡片查看細節。</p>
+                <h2 class="text-4xl md:text-5xl font-black mb-6">The <span class="text-gradient-green">Hidden Costs</span> of<br>Traditional Pipes</h2>
+                <p class="text-xl text-slate-500 dark:text-gray-400 max-w-2xl mx-auto">Not a small part, but a system-wide problem. Hover to explore.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-10">
@@ -226,12 +223,12 @@
                             <div class="w-16 h-16 bg-orange-100 dark:bg-orange-900/30 rounded-2xl flex items-center justify-center mb-8 text-orange-500 text-3xl shadow-sm group-hover:scale-110 transition-transform">
                                 <i class="fas fa-hard-hat"></i>
                             </div>
-                            <h3 class="text-2xl font-bold mb-4 group-hover:text-orange-500 transition-colors">① 公共安全成本</h3>
+                            <h3 class="text-2xl font-bold mb-4 group-hover:text-orange-500 transition-colors">① Safety Costs</h3>
                             <p class="text-slate-600 dark:text-gray-400 mb-8 leading-relaxed">
-                                台灣營造業職災長期占比最高。過重的管道意味著更高的吊裝風險、墜落與倒塌危機。
+                                Taiwan’s construction industry consistently ranks highest in occupational accidents. Heavier pipes mean greater lifting risks, increasing the chance of falls and structural collapse.
                             </p>
                             <div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-700">
-                                <span class="text-sm font-bold text-orange-500 flex items-center gap-2"><i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i> 風險來源：重物搬運</span>
+                                <span class="text-sm font-bold text-orange-500 flex items-center gap-2"><i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i> Risk Source: Heavy Lifting</span>
                             </div>
                         </div>
                     </div>
@@ -244,12 +241,12 @@
                             <div class="w-16 h-16 bg-blue-100 dark:bg-blue-900/30 rounded-2xl flex items-center justify-center mb-8 text-blue-500 text-3xl shadow-sm group-hover:scale-110 transition-transform">
                                 <i class="fas fa-layer-group"></i>
                             </div>
-                            <h3 class="text-2xl font-bold mb-4 group-hover:text-blue-500 transition-colors">② 結構與維護成本</h3>
+                            <h3 class="text-2xl font-bold mb-4 group-hover:text-blue-500 transition-colors">② Structural Costs</h3>
                             <p class="text-slate-600 dark:text-gray-400 mb-8 leading-relaxed">
-                                CIP 鑄鐵管重量驚人，增加結構負擔；PVC 易脆且耐用年限短。漏水點多，維修成本被嚴重低估。
+                                CIP cast iron pipes are extremely heavy, increasing structural loads. PVC is brittle with a short service life. Frequent leaks make maintenance costs severely underestimated.
                             </p>
                             <div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-700">
-                                <span class="text-sm font-bold text-blue-500 flex items-center gap-2"><i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i> 隱憂：結構負擔、漏水</span>
+                                <span class="text-sm font-bold text-blue-500 flex items-center gap-2"><i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i> Hidden Risks: Structural Load & Leakage</span>
                             </div>
                         </div>
                     </div>
@@ -262,12 +259,12 @@
                             <div class="w-16 h-16 bg-primary-100 dark:bg-primary-900/30 rounded-2xl flex items-center justify-center mb-8 text-primary-500 text-3xl shadow-sm group-hover:scale-110 transition-transform">
                                 <i class="fas fa-leaf"></i>
                             </div>
-                            <h3 class="text-2xl font-bold mb-4 group-hover:text-primary-500 transition-colors">③ 碳排與永續成本</h3>
+                            <h3 class="text-2xl font-bold mb-4 group-hover:text-primary-500 transition-colors">③ Carbon Costs</h3>
                             <p class="text-slate-600 dark:text-gray-400 mb-8 leading-relaxed">
-                                傳統管材製造與運輸碳排高。若無法回收或燃燒產生有毒物質，一開始選錯，就無法回頭補救。
+                                Traditional piping materials generate high emissions during manufacturing and transport. If they cannot be recycled—or release toxic substances when burned—a wrong choice cannot be reversed.
                             </p>
                             <div class="mt-auto pt-6 border-t border-slate-100 dark:border-slate-700">
-                                <span class="text-sm font-bold text-primary-500 flex items-center gap-2"><i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i> 致命傷：無法回頭</span>
+                                <span class="text-sm font-bold text-primary-500 flex items-center gap-2"><i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i> Fatal Flaw: No Way Back</span>
                             </div>
                         </div>
                     </div>
@@ -282,38 +279,38 @@
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-white">
             <div class="text-center mb-20 anim-hidden slide-in-up">
-                <h2 class="text-4xl md:text-6xl font-black mb-8">建築減重，<br>是<span class="text-primary-400">安全與永續</span>的關鍵</h2>
-                <p class="text-2xl text-primary-200 font-light">這不是理念，而是可以量化、可以計算的結果。</p>
+                <h2 class="text-4xl md:text-6xl font-black mb-8">Reducing Weight，<br>Is the Key to <br><span class="text-primary-400">Safety and Sustainability</span></h2>
+                <p class="text-2xl text-primary-200 font-light">This isn’t an idea. It’s measurable, calculable results.</p>
             </div>
 
             <div class="grid md:grid-cols-3 gap-16 text-center mb-20">
                 <div class="anim-hidden slide-in-left group hover:scale-110 transition-transform duration-300 p-6 rounded-3xl hover:bg-white/5" data-delay="0">
                     <div class="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-4 counter" data-target="100">0</div>
-                    <div class="text-3xl font-bold mb-4">噸 (Tons)</div>
-                    <p class="text-primary-200 text-lg">單一高層建築可減少的管道重量<br>大幅降低結構負擔</p>
+                    <div class="text-3xl font-bold mb-4">Tons</div>
+                    <p class="text-primary-200 text-lg">Pipe weight reduced per high-rise, lowering structural loads</p>
                 </div>
                 <div class="anim-hidden slide-in-up group hover:scale-110 transition-transform duration-300 p-6 rounded-3xl hover:bg-white/5" data-delay="100">
                     <div class="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-4 counter" data-target="1000">0</div>
-                    <div class="text-3xl font-bold mb-4">個 (Points)</div>
-                    <p class="text-primary-200 text-lg">潛在漏水點直接消失<br>減少大量接頭與維修風險</p>
+                    <div class="text-3xl font-bold mb-4">Points</div>
+                    <p class="text-primary-200 text-lg">Leak points eliminated, reducing joints and maintenance risk</p>
                 </div>
                 <div class="anim-hidden slide-in-right group hover:scale-110 transition-transform duration-300 p-6 rounded-3xl hover:bg-white/5" data-delay="200">
                     <div class="text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600 mb-4">100<span class="text-5xl">%</span></div>
-                    <div class="text-3xl font-bold mb-4">可回收 (Recyclable)</div>
-                    <p class="text-primary-200 text-lg">符合循環經濟<br>避免製造與燃燒的有毒物質</p>
+                    <div class="text-3xl font-bold mb-4">Recyclable</div>
+                    <p class="text-primary-200 text-lg">Circular by design, avoiding toxic production and incineration</p>
                 </div>
             </div>
 
             <div class="p-10 bg-primary-600/20 backdrop-blur-lg rounded-3xl border border-primary-500/30 anim-hidden slide-in-up hover:border-primary-400 transition-colors hover:shadow-neon">
                 <div class="flex flex-col md:flex-row items-center justify-between gap-8">
                     <div>
-                        <h3 class="text-3xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-rocket"></i> 為什麼現在一定要正視？</h3>
-                        <p class="text-primary-200 text-lg max-w-2xl">EPD 正成為國際公共工程與大型建案門檻。ESG / 淨零 / 綠建築 不再只是加分，而是「資格」。</p>
+                        <h3 class="text-3xl font-bold mb-4 flex items-center gap-3"><i class="fas fa-rocket"></i> Why It Can’t Wait?</h3>
+                        <p class="text-primary-200 text-lg max-w-2xl">EPDs are now required. ESG and net zero are no longer optional. They become the baseline.</p>
                     </div>
                     <div class="flex flex-wrap gap-4 justify-center">
-                        <span class="px-6 py-3 bg-primary-500/30 border border-primary-400/50 rounded-full font-bold hover:bg-primary-500 hover:scale-105 transition-all cursor-default">EPD 認證</span>
-                        <span class="px-6 py-3 bg-primary-500/30 border border-primary-400/50 rounded-full font-bold hover:bg-primary-500 hover:scale-105 transition-all cursor-default">ESG 指標</span>
-                        <span class="px-6 py-3 bg-primary-500/30 border border-primary-400/50 rounded-full font-bold hover:bg-primary-500 hover:scale-105 transition-all cursor-default">LEED 加分</span>
+                        <span class="px-6 py-3 bg-primary-500/30 border border-primary-400/50 rounded-full font-bold hover:bg-primary-500 hover:scale-105 transition-all cursor-default">EPD</span>
+                        <span class="px-6 py-3 bg-primary-500/30 border border-primary-400/50 rounded-full font-bold hover:bg-primary-500 hover:scale-105 transition-all cursor-default">ESG</span>
+                        <span class="px-6 py-3 bg-primary-500/30 border border-primary-400/50 rounded-full font-bold hover:bg-primary-500 hover:scale-105 transition-all cursor-default">LEED</span>
                     </div>
                 </div>
             </div>
@@ -323,19 +320,19 @@
     <section id="calculator" class="py-32 bg-primary-50 dark:bg-slate-900 relative">
         <div class="max-w-5xl mx-auto px-4 relative z-10">
             <div class="text-center mb-16 anim-hidden slide-in-up">
-                <h2 class="text-4xl font-black mb-6">從「為什麼重要」到「現在可以怎麼做」</h2>
-                <p class="text-xl text-slate-600 dark:text-gray-400">理解重要性只是第一步。真正的差別，在於把建築規模轉成材料用量。</p>
+                <h2 class="text-4xl font-black mb-6">From "Why It Matters" to "Action"</h2>
+                <p class="text-xl text-slate-600 dark:text-gray-400">Understanding is the first step. Impact comes from turning scale into materials.</p>
             </div>
 
             <div class="bg-white dark:bg-slate-800 p-12 rounded-[3rem] shadow-2xl border border-primary-100 dark:border-slate-700 anim-hidden slide-in-up group hover:shadow-neon transition-all duration-500">
                 <h3 class="text-2xl font-bold mb-10 text-center flex justify-center items-center gap-3">
                     <span class="w-10 h-10 bg-primary-100 dark:bg-primary-900 rounded-full flex items-center justify-center text-primary-600 dark:text-primary-400"><i class="fas fa-calculator"></i></span>
-                    快速試算：您的建築可以減重多少？
+                    Estimate Your Building’s Weight Reduction
                 </h3>
                 
                 <div class="grid md:grid-cols-2 gap-12 mb-12">
                     <div class="hover-scale-sm transition-transform p-4">
-                        <label class="block text-lg font-bold text-slate-700 dark:text-gray-300 mb-4">建築樓層數 (Floors)</label>
+                        <label class="block text-lg font-bold text-slate-700 dark:text-gray-300 mb-4">Floors</label>
                         <div class="relative">
                             <input type="range" min="5" max="50" value="20" class="w-full h-4 bg-slate-200 dark:bg-slate-700 rounded-full appearance-none cursor-pointer accent-primary-600 focus:outline-none focus:ring-4 focus:ring-primary-300 dark:focus:ring-primary-800 transition-all" oninput="updateCalc(this.value)" id="floor-slider">
                             <style>
@@ -345,27 +342,19 @@
                                 input[type=range]:hover::-webkit-slider-thumb { transform: scale(1.2); }
                             </style>
                         </div>
-                        <div class="text-right font-black text-4xl text-primary-600 dark:text-primary-400 mt-4"><span id="floor-val">20</span> <span class="text-lg text-slate-500">層樓</span></div>
+                        <div class="text-right font-black text-4xl text-primary-600 dark:text-primary-400 mt-4"><span id="floor-val">20</span> <span class="text-lg text-slate-500">Floors</span></div>
                     </div>
                     
                     <div class="flex flex-col justify-center space-y-6">
                         <div class="flex justify-between items-center p-6 bg-primary-50 dark:bg-slate-700/50 rounded-2xl border border-primary-100 dark:border-slate-600 hover:border-primary-300 hover:shadow-md transition-all hover:-translate-y-1">
-                            <span class="font-bold text-slate-600 dark:text-slate-300">預估減少管道重量</span>
-                            <span class="text-3xl font-black text-primary-600 dark:text-primary-400"><span id="weight-save">45</span> 噸</span>
-                        </div>
-                        <div class="flex justify-between items-center p-6 bg-primary-100 dark:bg-slate-700/50 rounded-2xl border border-primary-200 dark:border-slate-600 hover:border-primary-400 hover:shadow-md transition-all hover:-translate-y-1">
-                            <span class="font-bold text-slate-600 dark:text-slate-300">碳排放降低潛力</span>
-                            <span class="text-2xl font-black text-primary-600 flex items-center gap-2"><i class="fas fa-arrow-down"></i> 極高</span>
+                            <span class="font-bold text-slate-600 dark:text-slate-300">Estimated Weight Reduction</span>
+                            <span class="text-3xl font-black text-primary-600 dark:text-primary-400"><span id="weight-save">45</span> Tons</span>
                         </div>
                     </div>
                 </div>
 
                 <div class="text-center">
-                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-8">*此為粗估數值，實際影響需根據建築設計詳細計算。</p>
-                    <button class="magnetic-btn w-full md:w-auto px-12 py-6 bg-gradient-to-r from-primary-600 to-primary-500 text-white rounded-full font-black text-lg hover:shadow-neon hover:scale-105 transition-all duration-300 group relative overflow-hidden">
-                         <span class="relative z-10 flex items-center justify-center gap-3">取得完整分析報告 <i class="fas fa-arrow-right group-hover:translate-x-2 transition-transform"></i></span>
-                         <div class="absolute inset-0 h-full w-full bg-gradient-to-r from-primary-500 to-primary-600 scale-0 group-hover:scale-150 transition-transform duration-500 rounded-full origin-center opacity-50"></div>
-                    </button>
+                    <p class="text-sm text-slate-500 dark:text-slate-400 mb-8">*This is a rough estimate. Actual impact depends on detailed building design.</p>
                 </div>
             </div>
         </div>
@@ -377,14 +366,14 @@
         </div>
 
         <div class="max-w-4xl mx-auto px-4 relative z-10 anim-hidden slide-in-up">
-            <h2 class="text-5xl md:text-7xl font-black mb-10 leading-tight">看不見的管道，<br>正在決定<span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">看得見的未來</span>。</h2>
-            <p class="text-2xl text-primary-200 mb-16 font-light">不要讓材料選擇的盲點，成為建築壽命的終點。</p>
+            <h2 class="text-5xl md:text-7xl font-black mb-10 leading-tight">Invisible Pipes. <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-primary-600">Visible Futures.</span></h2>
+            <p class="text-2xl text-primary-200 mb-16 font-light">Don’t let material blind spots define a building’s lifespan.</p>
             <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="#" class="magnetic-btn px-12 py-6 bg-primary-600 text-white rounded-full font-bold hover:bg-primary-500 transition shadow-lg hover:shadow-neon text-xl flex items-center justify-center gap-3 hover:scale-105 transition-transform">
-                    <i class="far fa-calendar-check"></i> 立即評估您的專案
+                <a href="https://greenerx.tw/zh/estimate/" class="magnetic-btn px-12 py-6 bg-primary-600 text-white rounded-full font-bold hover:bg-primary-500 transition shadow-lg hover:shadow-neon text-xl flex items-center justify-center gap-3 hover:scale-105 transition-transform">
+                    <i class="far fa-calendar-check"></i> Estimate Your Project
                 </a>
-                <a href="#" class="magnetic-btn px-12 py-6 border-2 border-slate-700 text-slate-300 rounded-full font-bold hover:border-white hover:text-white transition text-xl flex items-center justify-center gap-3 hover:scale-105 transition-transform">
-                    看看真實案例 <i class="fas fa-arrow-right"></i>
+                <a href="https://greenerx.tw/zh/insights/" class="magnetic-btn px-12 py-6 border-2 border-slate-700 text-slate-300 rounded-full font-bold hover:border-white hover:text-white transition text-xl flex items-center justify-center gap-3 hover:scale-105 transition-transform">
+                    View Cases <i class="fas fa-arrow-right"></i>
                 </a>
             </div>
         </div>
@@ -394,33 +383,33 @@
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-12 mb-12">
             <div class="col-span-2">
                  <div class="flex items-center gap-3 mb-6">
-                    <div class="w-10 h-10 bg-gradient-to-br from-primary-600 to-primary-500 rounded-xl flex items-center justify-center text-white font-bold shadow-lg">G</div>
+                    <img src="/assets/img/GreenerX-logo.png" alt="📂" class="w-9 h-9 from-primary-600 to-primary-500 rounded-xl flex items-center justify-center group-hover:shadow-primary-500/30 transition-all duration-300 group-hover:scale-110">
                     <span class="font-black text-2xl text-white tracking-tighter">greenerx</span>
                 </div>
-                <p class="text-base max-w-md">致力於以創新材料科技，重新定義建築的隱形基礎設施，打造更安全、更永續的城市未來。</p>
+                <p class="text-base max-w-md">Innovative materials redefining the hidden foundations of safer, sustainable cities.</p>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">解決方案</h4>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">Topics</h4>
                 <ul class="space-y-4">
-                    <li><a href="#" class="hover:text-primary-400 transition">輕量化管道系統</a></li>
-                    <li><a href="#" class="hover:text-primary-400 transition">碳排計算服務</a></li>
-                    <li><a href="#" class="hover:text-primary-400 transition">EPD 認證協助</a></li>
+                    <li><a href="\zh\solution\" class="hover:text-primary-400 transition">Solutions</a></li>
+                    <li><a href="\zh\calculator\" class="hover:text-primary-400 transition">Calculator</a></li>
+                    <li><a href="\zh\insights\" class="hover:text-primary-400 transition">Insights</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">公司資訊</h4>
+                <h4 class="text-white font-bold mb-6 uppercase tracking-wider">About</h4>
                  <ul class="space-y-4">
-                    <li><a href="#" class="hover:text-primary-400 transition">關於我們</a></li>
-                    <li><a href="#" class="hover:text-primary-400 transition">聯絡我們</a></li>
-                    <li><a href="#" class="hover:text-primary-400 transition">隱私權政策</a></li>
+                    <li><a href="\zh\about\" class="hover:text-primary-400 transition">About Us</a></li>
+                    <li><a href="\zh\contact\" class="hover:text-primary-400 transition">Contact</a></li>
+                    <li><a href="\zh\privacy\" class="hover:text-primary-400 transition">Privacy Policy</a></li>
                 </ul>
             </div>
         </div>
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 border-t border-slate-800 text-center md:text-left flex flex-col md:flex-row justify-between items-center">
             <p>&copy; 2025 Greenerx. All rights reserved.</p>
             <div class="flex gap-6 mt-4 md:mt-0">
-                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-linkedin"></i></a>
-                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-twitter"></i></a>
+                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="text-slate-500 hover:text-primary-400 text-xl"><i class="fab fa-facebook"></i></a>
             </div>
         </div>
     </footer>
@@ -583,6 +572,20 @@
         `;
         document.head.appendChild(style);
 
+        document.getElementById('lang-switch').addEventListener('click', function() {
+            // 1. 獲取當前路徑 (例如: /zh/solution/)
+            const currentPath = window.location.pathname;
+                
+            // 2. 檢查路徑中是否包含 /zh/
+            if (currentPath.includes('/zh/')) {
+                // 3. 替換並跳轉
+                const newPath = currentPath.replace('/zh/', '/en/');
+                window.location.href = newPath;
+            } else {
+                // 例外處理：如果在首頁或其他沒有 /zh/ 的狀況，強制導向英文首頁
+                window.location.href = '/en/';
+            }
+        });
     </script>
 </body>
 </html>
