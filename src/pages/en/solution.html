@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Greenerx | 系統重構，找回建築平衡</title>
+    <title>Greenerx | Rebalancing Buildings</title>
     <meta name="description" content="Greenerx 解決方案：從材料更換到系統重構。透過輕量化、同層排水與全生命週期評估，讓建築在結構、安全與碳排之間回到合理的平衡。">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -147,9 +147,9 @@
                 
                 <h1 class="text-4xl md:text-6xl lg:text-7xl font-black leading-tight mb-8 text-slate-900 dark:text-white">
                     <br>
-                    讓建築
+                    Let Buildings
                     <span class="text-gradient-green relative inline-block">
-                        重拾平衡
+                        Restore Balance
                         <svg class="absolute w-full h-3 -bottom-1 left-0 text-primary-500 opacity-30" viewBox="0 0 100 10" preserveAspectRatio="none">
                             <path d="M0 5 Q 50 10 100 5" stroke="currentColor" stroke-width="3" fill="none" />
                         </svg>
@@ -510,11 +510,11 @@
             // 2. 檢查路徑中是否包含 /en/
             if (currentPath.includes('/en/')) {
                 // 3. 替換並跳轉
-                const newPath = currentPath.replace('/en/', '/en/');
+                const newPath = currentPath.replace('/en/', '/zh/');
                 window.location.href = newPath;
             } else {
                 // 例外處理：如果在首頁或其他沒有 /en/ 的狀況，強制導向英文首頁
-                window.location.href = '/en/';
+                window.location.href = '/zh/';
             }
         });
     </script>
