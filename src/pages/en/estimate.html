@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Greenerx | 立即評估您的專案</title>
+    <title>Greenerx | Estimate</title>
     <meta name="description" content="立即輸入專案參數，取得 Greenerx 針對您的建築專案所做的結構減重與碳排潛力預估報告。">
     
     <script src="https://cdn.tailwindcss.com"></script>
@@ -139,24 +139,24 @@
                     PROJECT ASSESSMENT
                 </span>
                 <h1 class="text-4xl md:text-5xl font-black text-slate-900 dark:text-white leading-tight mb-6">
-                    數據化您的<br>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">減碳與安全潛力</span>
+                    Quantifying Your<br>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-primary-400">Carbon Reduction and Safety Potential</span>
                 </h1>
                 <p class="text-slate-600 dark:text-gray-400 text-lg leading-relaxed">
-                    這不只是一份報價單，而是一份完整的建築體質分析報告。只需 2 分鐘，即可獲得針對您專案的結構優化預估。
+                    More than a quote. A full building performance report. Get a project-specific structural optimization estimate in just 2 minutes.
                 </p>
             </div>
 
             <div class="space-y-6 anim-hidden slide-in-up" data-delay="100">
-                <h3 class="text-slate-900 dark:text-white font-bold border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">評估報告將包含：</h3>
+                <h3 class="text-slate-900 dark:text-white font-bold border-b border-slate-200 dark:border-slate-800 pb-2 mb-4">The report will include:</h3>
                 
                 <div class="flex items-start gap-4 group p-4 rounded-2xl transition-all hover:bg-white dark:hover:bg-slate-800 hover:shadow-lg border border-transparent hover:border-primary-100 dark:hover:border-slate-700">
                     <div class="w-10 h-10 rounded-xl bg-primary-100 dark:bg-slate-800 text-primary-600 dark:text-primary-400 flex items-center justify-center text-lg group-hover:scale-110 transition-transform">
                         <i class="fas fa-weight-hanging"></i>
                     </div>
                     <div>
-                        <strong class="text-slate-800 dark:text-gray-200 block mb-1">重量減輕預估</strong>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">計算可減少的結構靜載重 (Dead Load) 噸數，與結構成本優化建議。</p>
+                        <strong class="text-slate-800 dark:text-gray-200 block mb-1">Weight Reduction Estimate</strong>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Estimated reduction in structural dead load (tons) and structural cost optimization recommendations.</p>
                     </div>
                 </div>
 
@@ -165,8 +165,8 @@
                         <i class="fas fa-leaf"></i>
                     </div>
                     <div>
-                        <strong class="text-slate-800 dark:text-gray-200 block mb-1">碳足跡分析</strong>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">對比傳統工法的碳排放差異，並提供符合 ISO 14067 的 EPD 數據引用。</p>
+                        <strong class="text-slate-800 dark:text-gray-200 block mb-1">Carbon Footprint Analysis</strong>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Carbon emission comparison with conventional methods, supported by ISO 14067–compliant EPD references.</p>
                     </div>
                 </div>
 
@@ -175,8 +175,8 @@
                         <i class="fas fa-search-dollar"></i>
                     </div>
                     <div>
-                        <strong class="text-slate-800 dark:text-gray-200 block mb-1">綜合成本效益</strong>
-                        <p class="text-sm text-slate-500 dark:text-slate-400">包含施工工期縮短、人力節省與長期維護成本的綜合評估。</p>
+                        <strong class="text-slate-800 dark:text-gray-200 block mb-1">Overall Cost Efficiency</strong>
+                        <p class="text-sm text-slate-500 dark:text-slate-400">Comprehensive evaluation of construction time reduction, labor savings, and long-term maintenance costs.</p>
                     </div>
                 </div>
             </div>
@@ -223,7 +223,7 @@
                                 </div>
                             </div>
                             <div>
-                                <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">總坪數 (約)</label>
+                                <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Total Floor Area</label>
                                 <div class="relative">
                                     <input type="number" id="area" class="form-input w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 pl-10 text-slate-900 dark:text-white font-medium focus:outline-none focus:border-primary-500" placeholder="0" min="1">
                                     <i class="fas fa-ruler-combined absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
@@ -232,13 +232,13 @@
                         </div>
 
                         <div>
-                             <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">目前階段</label>
+                             <label class="block text-sm font-bold text-slate-700 dark:text-slate-300 mb-2">Current Stage</label>
                              <div class="relative">
                                 <select id="stage" class="form-input w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-slate-900 dark:text-white appearance-none cursor-pointer font-medium focus:outline-none focus:border-primary-500" required>
                                     <option value="" disabled selected>Please select...</option>
                                     <option value="planning">Planning</option>
                                     <option value="permit">Permitting</option>
-                                    <option value="bidding">Bidding)</option>
+                                    <option value="bidding">Bidding</option>
                                     <option value="construction">Construction</option>
                                 </select>
                                 <div class="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-slate-500">
@@ -248,18 +248,18 @@
                         </div>
 
                         <div class="border-t border-slate-100 dark:border-slate-700 pt-4 mt-2">
-                            <p class="text-sm font-bold text-primary-600 dark:text-primary-400 mb-4">聯絡資訊 (接收報告用)</p>
+                            <p class="text-sm font-bold text-primary-600 dark:text-primary-400 mb-4">Contact Details (to Receive the Report)</p>
                             
                             <div class="space-y-4">
                                 <div>
                                     <div class="relative">
-                                        <input type="text" id="name" class="form-input w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 pl-10 text-slate-900 dark:text-white font-medium focus:outline-none focus:border-primary-500" placeholder="您的稱呼 / 公司名稱" required>
+                                        <input type="text" id="name" class="form-input w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 pl-10 text-slate-900 dark:text-white font-medium focus:outline-none focus:border-primary-500" placeholder="Your Name / Company" required>
                                         <i class="fas fa-user absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
                                     </div>
                                 </div>
                                 <div>
                                     <div class="relative">
-                                        <input type="email" id="email" class="form-input w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 pl-10 text-slate-900 dark:text-white font-medium focus:outline-none focus:border-primary-500" placeholder="Email 信箱" required>
+                                        <input type="email" id="email" class="form-input w-full bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 pl-10 text-slate-900 dark:text-white font-medium focus:outline-none focus:border-primary-500" placeholder="Email" required>
                                         <i class="fas fa-envelope absolute left-4 top-1/2 -translate-y-1/2 text-slate-400"></i>
                                     </div>
                                 </div>
@@ -268,12 +268,12 @@
 
                         <button type="submit" id="submitBtn" class="w-full bg-primary-600 hover:bg-primary-500 text-white font-bold py-4 rounded-xl shadow-lg shadow-primary-600/30 hover:shadow-neon transform hover:-translate-y-1 transition-all flex items-center justify-center gap-2 mt-4">
                             <span class="spinner" id="loadingSpinner"></span>
-                            <span id="btnText">開始運算評估</span>
+                            <span id="btnText">Start Evaluation</span>
                             <i class="fas fa-arrow-right" id="btnIcon"></i>
                         </button>
 
                         <p class="text-center text-slate-400 text-xs">
-                            點擊按鈕即表示您同意我們的隱私權政策。我們將在 24 小時內與您聯繫。
+                            By clicking the button, you agree to our Privacy Policy. We will contact you within 24 hours.
                         </p>
                     </form>
 
@@ -281,9 +281,9 @@
                         <div class="w-20 h-20 bg-primary-100 dark:bg-primary-900/30 text-primary-600 dark:text-primary-400 rounded-full flex items-center justify-center text-4xl mx-auto mb-6 shadow-lg shadow-primary-500/20">
                             <i class="fas fa-check"></i>
                         </div>
-                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">資料已送出</h3>
-                        <p class="text-slate-500 dark:text-slate-400 mb-8">系統正在計算您的專案數據，初步報告將寄送至您的信箱。</p>
-                        <button onclick="window.location.reload()" class="text-primary-600 hover:text-primary-700 font-bold underline underline-offset-4">返回</button>
+                        <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-2">Data Submitted</h3>
+                        <p class="text-slate-500 dark:text-slate-400 mb-8">The system is calculating your project data. A preliminary report will be sent to your email.</p>
+                        <button onclick="window.location.reload()" class="text-primary-600 hover:text-primary-700 font-bold underline underline-offset-4">Back</button>
                     </div>
 
                 </div>
